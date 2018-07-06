@@ -1,15 +1,15 @@
 //
-//  ViewElementsTests.swift
-//  ViewElementsTests
+//  ViewElementsExamplesTests.swift
+//  ViewElementsExamplesTests
 //
 //  Created by Wirawit Rueopas on 5/7/18.
 //  Copyright © 2018 Wirawit Rueopas. All rights reserved.
 //
 
 import XCTest
-@testable import ViewElements
+@testable import ViewElementsExamples
 
-class ViewElementsTests: XCTestCase {
+class ViewElementsExamplesTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
