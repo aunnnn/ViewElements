@@ -30,10 +30,12 @@ public struct AnyElement: Equatable {
         func render(view: UIView) -> (AnyProps) -> Void {
             return { [weak view] (anyProps: AnyProps) -> Void in
                 guard let typedProps = anyProps as? T.PropsType else {
-                    fatalError("Unexpected casting from props type \(type(of: anyProps)) to \(T.PropsType.self)")
+                    warn("Unexpected casting from props type \(type(of: anyProps)) to \(T.PropsType.self)")
+                    return
                 }
                 guard let typedView = view as? T else {
-                    fatalError("Unexpected casting from view type \(type(of: view)) to \(T.self)")
+                    warn("Unexpected casting from view type \(type(of: view)) to \(T.self)")
+                    return
                 }
                 typedView.render(props: typedProps)
             }
@@ -41,7 +43,8 @@ public struct AnyElement: Equatable {
 
         func isPropsEqualTo(anotherProps: AnyProps) -> Bool {
             guard let typedAnotherProps = anotherProps as? T.PropsType else {
-                fatalError("Expected received `anotherProps` to be \(T.PropsType.self), but actually is \(type(of: anotherProps)). \(element.identifier)")
+                warn("Expected received `anotherProps` to be \(T.PropsType.self), but actually is \(type(of: anotherProps)). \(element.identifier)")
+                return false
             }
             return element.props == typedAnotherProps
         }
