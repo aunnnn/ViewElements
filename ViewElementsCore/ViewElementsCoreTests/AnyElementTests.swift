@@ -7,29 +7,35 @@
 //
 
 import XCTest
+@testable import ViewElementsCore
 
 class AnyElementTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testEqualityOfAnyElements() {
+        let el1 = ElementOf<MockView>(props: "A").any
+        let el2 = ElementOf<MockView>(props: "A").any
+        let el3 = ElementOf<MockView>(props: "B").any
+        XCTAssert(el1 == el2)
+        XCTAssert(el1 != el3)
     }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+
+    func testUnequaFromSamePropsButDifferentViewClasses() {
+        let el1 = ElementOf<MockView>(props: "A").any
+        let el2 = ElementOf<TestBuildView>(props: "A").any
+        XCTAssert(el1 != el2)
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+    func testPublicInterfaces() {
+        let el1 = ElementOf<MockView>(props: "A").any
+
+        XCTAssertTrue(el1.isPropsEqualTo(anotherProps: "A"))
+        XCTAssertFalse(el1.isPropsEqualTo(anotherProps: "B"))
+        XCTAssertFalse(el1.isPropsEqualTo(anotherProps: 2))
+
+        let builtView = el1.build()
+        XCTAssert(builtView is MockView)
+
+        let mockView = builtView as! MockView
+        el1.render(view: mockView, props: "Hello")
+        XCTAssert(mockView.text == "Hello")
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }

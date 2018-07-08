@@ -41,7 +41,7 @@ class ElementOfViewTests: XCTestCase {
     }
 }
 
-private final class MockView: UILabel, ElementableView {
+final class MockView: UILabel, ElementableView {
 
     typealias PropsType = String
 
