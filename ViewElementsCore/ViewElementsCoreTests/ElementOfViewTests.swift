@@ -10,9 +10,15 @@ import XCTest
 @testable import ViewElementsCore
 
 class ElementOfViewTests: XCTestCase {
+
     func testElementIdentifier() {
         let el = ElementOf<MockView>(props: "A")
         XCTAssert(el.identifier == "MockView")
+    }
+
+    func testElementProps() {
+        let el = ElementOf<MockView>(props: "A")
+        XCTAssert(el.props == "A")
     }
 
     func testElementsShouldEqualWhenViewAndPropsEqual() {

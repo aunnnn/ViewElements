@@ -19,14 +19,17 @@
 		3018DE0B20EFCA24003DC5D1 /* RowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3018DDFF20EFCA24003DC5D1 /* RowTableViewCell.swift */; };
 		3018DE0C20EFCA24003DC5D1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3018DE0020EFCA24003DC5D1 /* Info.plist */; };
 		3018DE0F20EFCA69003DC5D1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3018DE0E20EFCA69003DC5D1 /* UIKit.framework */; };
+		3035273420F26F9700A8F76E /* TestBuildViewFromNibWithDifferentName.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3035273320F26F9700A8F76E /* TestBuildViewFromNibWithDifferentName.xib */; };
 		303AEAC920F24BFB00270B71 /* ElementOfViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AEAC820F24BFB00270B71 /* ElementOfViewTests.swift */; };
-		303AEACB20F2503400270B71 /* ElementableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AEACA20F2503400270B71 /* ElementableViewTests.swift */; };
+		303AEACB20F2503400270B71 /* ElementableViewBuildMethodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AEACA20F2503400270B71 /* ElementableViewBuildMethodTests.swift */; };
 		303AEACD20F2575100270B71 /* TestBuildViewFromNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 303AEACC20F2575100270B71 /* TestBuildViewFromNib.xib */; };
 		30433CFB20F0B8410054224F /* UIColor+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30433CFA20F0B8410054224F /* UIColor+Equatable.swift */; };
 		304F48EE20F138E400076241 /* StackOfElementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F48ED20F138E400076241 /* StackOfElementsView.swift */; };
 		30A18A0C20F21C2B00103699 /* ViewElementsCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A18A0B20F21C2B00103699 /* ViewElementsCoreTests.swift */; };
 		30A18A0E20F21C2B00103699 /* ViewElementsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306AAF1B20EE19B800F89A10 /* ViewElementsCore.framework */; };
 		30A18A1520F21CD700103699 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A18A1420F21CD700103699 /* Component.swift */; };
+		30BF7A7120F2702400DCD26A /* ElementableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BF7A7020F2702400DCD26A /* ElementableViewTests.swift */; };
+		30BF7A7320F2712000DCD26A /* AnyElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BF7A7220F2712000DCD26A /* AnyElementTests.swift */; };
 		30EEAF7A20F2217400E4DFCE /* UIColor+EquatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EEAF7920F2217400E4DFCE /* UIColor+EquatableTests.swift */; };
 		30EEAF7C20F2230C00E4DFCE /* UIView+AutoLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EEAF7B20F2230C00E4DFCE /* UIView+AutoLayoutTests.swift */; };
 		30EEAF7E20F2276500E4DFCE /* MiscTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EEAF7D20F2276500E4DFCE /* MiscTests.swift */; };
@@ -56,8 +59,9 @@
 		3018DDFF20EFCA24003DC5D1 /* RowTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowTableViewCell.swift; sourceTree = "<group>"; };
 		3018DE0020EFCA24003DC5D1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3018DE0E20EFCA69003DC5D1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3035273320F26F9700A8F76E /* TestBuildViewFromNibWithDifferentName.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestBuildViewFromNibWithDifferentName.xib; sourceTree = "<group>"; };
 		303AEAC820F24BFB00270B71 /* ElementOfViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementOfViewTests.swift; sourceTree = "<group>"; };
-		303AEACA20F2503400270B71 /* ElementableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementableViewTests.swift; sourceTree = "<group>"; };
+		303AEACA20F2503400270B71 /* ElementableViewBuildMethodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementableViewBuildMethodTests.swift; sourceTree = "<group>"; };
 		303AEACC20F2575100270B71 /* TestBuildViewFromNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestBuildViewFromNib.xib; sourceTree = "<group>"; };
 		30433CFA20F0B8410054224F /* UIColor+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Equatable.swift"; sourceTree = "<group>"; };
 		304F48ED20F138E400076241 /* StackOfElementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackOfElementsView.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 		30A18A0B20F21C2B00103699 /* ViewElementsCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewElementsCoreTests.swift; sourceTree = "<group>"; };
 		30A18A0D20F21C2B00103699 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30A18A1420F21CD700103699 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
+		30BF7A7020F2702400DCD26A /* ElementableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementableViewTests.swift; sourceTree = "<group>"; };
+		30BF7A7220F2712000DCD26A /* AnyElementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyElementTests.swift; sourceTree = "<group>"; };
 		30EEAF7920F2217400E4DFCE /* UIColor+EquatableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+EquatableTests.swift"; sourceTree = "<group>"; };
 		30EEAF7B20F2230C00E4DFCE /* UIView+AutoLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayoutTests.swift"; sourceTree = "<group>"; };
 		30EEAF7D20F2276500E4DFCE /* MiscTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscTests.swift; sourceTree = "<group>"; };
@@ -182,8 +188,11 @@
 				30EEAF7B20F2230C00E4DFCE /* UIView+AutoLayoutTests.swift */,
 				30EEAF7D20F2276500E4DFCE /* MiscTests.swift */,
 				303AEAC820F24BFB00270B71 /* ElementOfViewTests.swift */,
-				303AEACA20F2503400270B71 /* ElementableViewTests.swift */,
+				303AEACA20F2503400270B71 /* ElementableViewBuildMethodTests.swift */,
+				3035273320F26F9700A8F76E /* TestBuildViewFromNibWithDifferentName.xib */,
 				303AEACC20F2575100270B71 /* TestBuildViewFromNib.xib */,
+				30BF7A7020F2702400DCD26A /* ElementableViewTests.swift */,
+				30BF7A7220F2712000DCD26A /* AnyElementTests.swift */,
 			);
 			path = ViewElementsCoreTests;
 			sourceTree = "<group>";
@@ -287,6 +296,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3035273420F26F9700A8F76E /* TestBuildViewFromNibWithDifferentName.xib in Resources */,
 				303AEACD20F2575100270B71 /* TestBuildViewFromNib.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,8 +332,10 @@
 				30EEAF7A20F2217400E4DFCE /* UIColor+EquatableTests.swift in Sources */,
 				30EEAF7E20F2276500E4DFCE /* MiscTests.swift in Sources */,
 				303AEAC920F24BFB00270B71 /* ElementOfViewTests.swift in Sources */,
-				303AEACB20F2503400270B71 /* ElementableViewTests.swift in Sources */,
+				303AEACB20F2503400270B71 /* ElementableViewBuildMethodTests.swift in Sources */,
 				30EEAF7C20F2230C00E4DFCE /* UIView+AutoLayoutTests.swift in Sources */,
+				30BF7A7320F2712000DCD26A /* AnyElementTests.swift in Sources */,
+				30BF7A7120F2702400DCD26A /* ElementableViewTests.swift in Sources */,
 				30A18A0C20F21C2B00103699 /* ViewElementsCoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

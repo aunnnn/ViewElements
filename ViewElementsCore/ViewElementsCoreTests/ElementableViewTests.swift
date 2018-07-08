@@ -11,79 +11,33 @@ import XCTest
 
 class ElementableViewTests: XCTestCase {
 
-    func testBuildMethodInit() {
-        TestBuildView.currentBuildMethod = .frame(.zero)
-        let view = ElementOf<TestBuildView>(props: "Hello").build()
-        XCTAssert(view.payload == "From frame")
+    func testCustomizingViewRedBackground() {
+        let el = ElementOf<TestCustomizingView>(props: "Test")
+        let view = el.build()
+        XCTAssert(view.payload == nil)
     }
 
-    func testBuildMethodCustom() {
-        TestBuildView.currentBuildMethod = .custom(block: { () -> UIView in
-            return TestBuildView(payload: "From custom")
-        })
-        let view = ElementOf<TestBuildView>(props: "Hello").build()
-        XCTAssert(view.payload == "From custom")
+    func testCustomizingViewIsCustomizedToBlueBackground() {
+        let el = ElementOf<TestCustomizingView>(props: "Test").customized { (v) in
+            v.payload = "Customized"
+        }
+        let view = el.build()
+        XCTAssert(view.payload == "Customized")
     }
 
-    func testBuildMethodNib() {
-        TestBuildView.currentBuildMethod = .nib
-        let view = ElementOf<TestBuildViewFromNib>(props: "Hello").build()
-        XCTAssert(view.payload == "From nib")
-    }
 }
 
+class TestCustomizingView: UILabel, ElementableView {
 
-class TestBuildView: UILabel, ElementableView {
-    
     typealias PropsType = String
 
-    let payload: String?
-
-    static var currentBuildMethod: ViewBuildMethod = .frame(.zero)
-
-    init(payload: String?) {
-        self.payload = payload
-        super.init(frame: .zero)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("Should not call this")
-    }
-
-    override required init(frame: CGRect) {
-        self.payload = "From frame"
-        super.init(frame: frame)
-    }
+    var payload: String?
 
     func setup() {
-
+        backgroundColor = .red
     }
 
     func render(props: String) {
         text = props
-    }
-
-    class func buildMethod() -> ViewBuildMethod {
-        return currentBuildMethod
-    }
-}
-
-class TestBuildViewFromNib: BaseNibView, ElementableView {
-
-    typealias PropsType = String
-
-    var payload: String? = nil
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        payload = "From nib"
-    }
-
-    func setup() {
-        
-    }
-
-    func render(props: TestBuildViewFromNib.PropsType) {
-
     }
 }
