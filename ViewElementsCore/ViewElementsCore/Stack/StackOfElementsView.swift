@@ -37,14 +37,6 @@ open class StackOfElementsView: UIView, ElementableView {
     private var prevProps: Stack?
     private lazy var stackView = UIStackView()
 
-    public required override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-
-    public required init?(coder aDecoder: NSCoder) {
-        fatalError("Must initialize with frame")
-    }
-
     /// We implement stack id based on props here.
     /// Because all components share the same stack view, with different Stack content.
     public static func viewIdentifier(props: PropsType) -> String {

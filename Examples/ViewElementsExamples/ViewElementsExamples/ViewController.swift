@@ -55,6 +55,6 @@ class MyView: UIView, ElementableView {
     }
 
     class func buildMethod() -> ViewBuildMethod {
-        return .init
+        return .frame(.zero)
     }
 }
