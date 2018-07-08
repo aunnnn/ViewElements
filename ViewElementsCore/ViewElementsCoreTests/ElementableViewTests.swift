@@ -25,6 +25,15 @@ class ElementableViewTests: XCTestCase {
         XCTAssert(view.payload == "Customized")
     }
 
+    func testDynamicViewIdentifier() {
+        let el = ElementOf<TestCustomizingView>(props: "Test ID")
+        XCTAssert(el.identifier == "Test ID")
+    }
+
+    func testDynamicViewIdentifierCustomized() {
+        let actualID = ElementOf<TestCustomizingView>(props: "Test ID").customized { _ in }.identifier
+        XCTAssert(actualID.contains("Test ID") && actualID != "TEST ID")
+    }
 }
 
 class TestCustomizingView: UILabel, ElementableView {
@@ -39,5 +48,9 @@ class TestCustomizingView: UILabel, ElementableView {
 
     func render(props: String) {
         text = props
+    }
+
+    static func viewIdentifier(props: PropsType) -> String {
+        return props
     }
 }
