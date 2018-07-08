@@ -9,7 +9,7 @@
 import UIKit
 
 public typealias LayoutMargins = UIEdgeInsets
-public enum SeparatorStyle {
+public enum SeparatorStyle: Equatable {
     case hidden
     case full
     case insets(left: CGFloat, right: CGFloat)
@@ -50,8 +50,37 @@ public struct Row: ElementContainer {
         }
     }
 
-    var hasFixedHeight: Bool {
+    private var hasFixedHeight: Bool {
         return rowHeight != UITableViewAutomaticDimension
+    }
+
+    public init<T>(_ element: ElementOf<T>) {
+        anyElement = AnyElement(element)
+    }
+
+
+}
+
+public struct SectionHeaderFooter: ElementContainer {
+
+    internal let anyElement: AnyElement
+
+    // MARK: ElementContainer's
+    public var backgroundColor: UIColor = .clear
+    public var isUserInteractionEnabled: Bool = true
+    public var layoutMargins: LayoutMargins = .zero
+
+    public var estimatedHeaderFooterHeight: CGFloat? = nil
+    public var headerFooterHeight: CGFloat = UITableViewAutomaticDimension {
+        didSet {
+            if hasFixedHeight {
+                estimatedHeaderFooterHeight = headerFooterHeight
+            }
+        }
+    }
+
+    private var hasFixedHeight: Bool {
+        return headerFooterHeight != UITableViewAutomaticDimension
     }
 
     public init<T>(_ element: ElementOf<T>) {
@@ -59,15 +88,30 @@ public struct Row: ElementContainer {
     }
 }
 
-public struct Section {
+/// Both share the same model
+public typealias SectionHeader = SectionHeaderFooter
+public typealias SectionFooter = SectionHeaderFooter
+
+public struct Section: Equatable {
+    public var header: SectionHeader?
+    public var footer: SectionFooter?
     public var rows: [Row]
+
+    public init(rows: [Row],
+                header: SectionHeader? = nil,
+                footer: SectionFooter? = nil) {
+        self.rows = rows
+        self.header = header
+        self.footer = footer
+    }
 }
 
-public struct Table {
+public struct Table: Equatable {
     public var sections: [Section]
 
     /// If `true` (default), each FormRow's estimatedRowHeight will be updated with actual value after displaying the cell. If your cell heights are changing frequently, then you might want to set this to `false`.
     public var updatesEstimatedRowHeights: Bool = true
+    public var updatesEstimatedHeaderFooterHeights: Bool = true
 
     /// Default is `false`. If `true`, a row height of previously displayed cells will be used as `estimatedRowHeight` of subsequent cells with the same reuseID.
     ///
@@ -76,6 +120,8 @@ public struct Table {
 
     /// If `true` (default), hide the trailing separators in the table view.
     public var hidesTrailingSeparators: Bool = true
+
+    public var isRootTable: Bool = true
 
     public subscript(indexPath: IndexPath) -> Row {
         get {

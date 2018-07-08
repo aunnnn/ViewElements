@@ -9,7 +9,7 @@
 import UIKit
 
 /// Describe a container view that contains view built from Element.
-protocol ElementContainer {
+protocol ElementContainer: Equatable {
 
     /// Background color of container
     var backgroundColor: UIColor { get }
@@ -20,6 +20,7 @@ protocol ElementContainer {
 }
 
 extension ElementContainer {
+    
     func configure(container view: UIView) {
         view.backgroundColor = backgroundColor
         view.isUserInteractionEnabled = isUserInteractionEnabled

@@ -12,7 +12,7 @@ public extension UIView {
 
     /// Pin self to view's edges with inset.
     @discardableResult
-    func al_edges(toView view: UIView, insets: UIEdgeInsets = .zero) -> UIView {
+    func al_edges(toView view: UIView, insets: UIEdgeInsets = .zero, priority: UILayoutPriority = .required) -> UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraints = [
             self.leftAnchor.constraint(equalTo: view.leftAnchor, constant: insets.left),
@@ -20,19 +20,28 @@ public extension UIView {
             self.topAnchor.constraint(equalTo: view.topAnchor, constant: insets.top),
             self.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -insets.bottom)
         ]
+        constraints.forEach { (c) in
+            c.priority = priority
+        }
         NSLayoutConstraint.activate(constraints)
         return self
     }
 
     /// Pin self to view's margins guide.
     @discardableResult
-    func al_edgesToLayoutMarginsGuide(toView view: UIView) -> UIView {
+    func al_edgesToLayoutMarginsGuide(toView view: UIView, priority: UILayoutPriority = .required) -> UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         let guide = view.layoutMarginsGuide
-        self.leftAnchor.constraint(equalTo: guide.leftAnchor).isActive = true
-        self.rightAnchor.constraint(equalTo: guide.rightAnchor).isActive = true
-        self.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
-        self.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
+        let constraints = [
+            self.leftAnchor.constraint(equalTo: guide.leftAnchor),
+            self.rightAnchor.constraint(equalTo: guide.rightAnchor),
+            self.topAnchor.constraint(equalTo: guide.topAnchor),
+            self.bottomAnchor.constraint(equalTo: guide.bottomAnchor)
+        ]
+        constraints.forEach { (c) in
+            c.priority = priority
+        }
+        NSLayoutConstraint.activate(constraints)
         return self
     }
 }

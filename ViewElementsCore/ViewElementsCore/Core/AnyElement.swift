@@ -8,20 +8,26 @@
 
 import UIKit
 
-typealias AnyProps = Any
+public typealias AnyProps = Any
 
-struct AnyElement {
-    let viewIdentifier: String
+public extension ElementOf {
+    var any: AnyElement {
+        return AnyElement(self)
+    }
+}
+
+public struct AnyElement: Equatable {
+    let identifier: String
     let props: AnyProps
     private let _build: () -> UIView
-    private let _renderForView: (UIView) -> (AnyProps) -> Void
+    private let _render: (UIView) -> (AnyProps) -> Void
     private let _isPropsEqualToAnotherProps: (AnyProps) -> Bool
 
     init<T>(_ element: ElementOf<T>) {
-        viewIdentifier = element.viewIdentifier
+        identifier = element.identifier
         props = element.props
         _build = element.build
-        _renderForView = { (view: UIView) -> (AnyProps) -> Void in
+        func render(view: UIView) -> (AnyProps) -> Void {
             return { [weak view] (anyProps: AnyProps) -> Void in
                 guard let typedProps = anyProps as? T.PropsType else {
                     fatalError("Unexpected casting from props type \(type(of: anyProps)) to \(T.PropsType.self)")
@@ -32,12 +38,16 @@ struct AnyElement {
                 typedView.render(props: typedProps)
             }
         }
-        _isPropsEqualToAnotherProps = { (anotherProps: AnyProps) -> Bool in
+
+        func isPropsEqualTo(anotherProps: AnyProps) -> Bool {
             guard let typedAnotherProps = anotherProps as? T.PropsType else {
-                fatalError("Expected received `anotherProps` to be \(T.PropsType.self), but actually is \(type(of: anotherProps))")
+                fatalError("Expected received `anotherProps` to be \(T.PropsType.self), but actually is \(type(of: anotherProps)). \(element.identifier)")
             }
             return element.props == typedAnotherProps
         }
+
+        _render = render(view:)
+        _isPropsEqualToAnotherProps = isPropsEqualTo(anotherProps:)
     }
 
     func build() -> UIView {
@@ -45,10 +55,15 @@ struct AnyElement {
     }
 
     func render(view: UIView, props: AnyProps) -> Void {
-        _renderForView(view)(props)
+        _render(view)(props)
     }
 
     func isPropsEqualTo(anotherProps: AnyProps) -> Bool {
         return _isPropsEqualToAnotherProps(anotherProps)
+    }
+
+    public static func ==(lhs: AnyElement, rhs: AnyElement) -> Bool {
+        return lhs.identifier == rhs.identifier
+            && lhs.isPropsEqualTo(anotherProps: rhs.props)
     }
 }

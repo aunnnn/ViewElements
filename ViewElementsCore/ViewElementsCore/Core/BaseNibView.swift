@@ -10,7 +10,10 @@ import UIKit
 
 /// Base UIView instantiated from nib in the ViewElements' ecosystem.
 ///
-/// *IMPORTANT:* UIView that is initiated from nib file must have this as a base class (for it to work with the framework), as it performs some tasks on awakeFromNib.
+/// UIView that is initiated from nib file **must** have this as a base class (for it to work with the framework), as it performs some tasks on awakeFromNib.
+///
+/// **IMPORTANT**: If your nib name doesn't match the class name, `override
+/// open class func buildMethod() -> ViewBuildMethod` too.
 open class BaseNibView: UIView {
     
     internal var didAwakeFromNibBlock: (() -> Void)? {

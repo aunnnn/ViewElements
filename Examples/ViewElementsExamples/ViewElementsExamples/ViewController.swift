@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ViewElements
+import ViewElementsCore
 
 extension Table {
     init(rowsBlock: () -> [Row]) {
@@ -19,18 +19,26 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let table = Table { () -> [Row] in
-            var r1 = Row(ElementOf<TestNibView>(props: "Wow hello"))
-            r1.separatorStyle = .insets(left: 20, right: 8)
-            r1.backgroundColor = .blue
-            return [r1, r1]
+        var rows: [Row] = (0...20).map { i in
+            var r = Row(ElementOf<TestNibView>(props: "Ind \(i)"))
+            r.separatorStyle = .insets(left: 20, right: 8)
+            r.backgroundColor = .blue
+            return r
         }
-        let tableView = TableOfElementsView(table: table)
+        let sel: (Int) -> Row = { i in
+            let stack = Stack([ElementOf<TestNibView>(props: "\(i) s left").any,
+                               ElementOf<TestNibView>(props: "\(i) s right").any])
+            let sel = Row(Component(props: stack))
+            return sel
+        }
+        rows = [sel(1222)] + rows + (0...4).map { i in sel(i) } + rows + (0...4).map { i in sel(100+i) }
+        let s = Section(rows: rows, footer: SectionFooter(ElementOf<TestNibView>(props: "1st Footer!")))
+        var table = Table(sections: [s, s])
+        table.guessesSameHeightsForCellsWithSameType = true
+        let tableView = TableOfElementsView()
         view.addSubview(tableView)
         tableView.al_edges(toView: view)
-        DispatchQueue.main.async {
-            tableView.reloadData()
-        }
+        tableView.reload(table: table)
     }
 }
 

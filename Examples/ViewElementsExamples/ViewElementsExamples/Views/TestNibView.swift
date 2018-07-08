@@ -6,7 +6,8 @@
 //  Copyright © 2018 Wirawit Rueopas. All rights reserved.
 //
 
-import ViewElements
+import UIKit
+import ViewElementsCore
 
 class TestNibView: BaseNibView, ElementableView {
 

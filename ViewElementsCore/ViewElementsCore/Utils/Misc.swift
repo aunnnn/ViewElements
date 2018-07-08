@@ -26,3 +26,9 @@ func randomAlphaNumericString(length: Int) -> String {
 func warn(_ items: Any...) {
     print("Warning: \(items)")
 }
+
+func print(_ items: Any...) {
+    #if DEBUG
+    Swift.print("[#DEBUG] \(items)")
+    #endif
+}
