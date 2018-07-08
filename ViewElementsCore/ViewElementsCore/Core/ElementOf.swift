@@ -132,6 +132,7 @@ public struct ElementOf<View: ElementableView>: Element {
     private func setup(_ view: View) {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setup()
+        customizationBlock?(view)
         view.render(props: props)
     }
 }
