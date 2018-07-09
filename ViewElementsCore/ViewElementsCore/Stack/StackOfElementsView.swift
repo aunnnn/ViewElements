@@ -160,4 +160,8 @@ open class StackOfElementsView: UIView, ElementableView {
         if from.elements.count != to.elements.count { return true }
         return zip(from.elements, to.elements).first(where: { !$0.0.isPropsEqualTo(anotherProps: $0.1.props) }) != nil
     }
+
+    public static func buildMethod() -> ViewBuildMethod {
+        return .frame(.zero)
+    }
 }

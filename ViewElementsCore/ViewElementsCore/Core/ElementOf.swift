@@ -26,12 +26,12 @@ public protocol ElementableView where Self: UIView {
 }
 
 public extension ElementableView {
-    static func buildMethod() -> ViewBuildMethod {
-        return .frame(.zero)
-    }
-
     static func viewIdentifier(props: PropsType) -> String {
         return "\(Self.self)"
+    }
+
+    static func buildMethod() -> ViewBuildMethod {
+        return .frame(.zero)
     }
 }
 

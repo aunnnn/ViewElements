@@ -18,26 +18,34 @@ open class BaseNibView: UIView {
     
     internal var didAwakeFromNibBlock: (() -> Void)? {
         didSet {
-            // If at this time 'awakeFromNib' is already called, performs it directly here.
-            if didAwakeFromNib {
-                didAwakeFromNibBlock?()
+            // Block not nil, already awake, but has not called the block yet.
+            if let block = didAwakeFromNibBlock, didAwakeFromNib, !isAlreadyExecuteDidAwakeFromNibBlock {
+                block()
+                isAlreadyExecuteDidAwakeFromNibBlock = true
             }
         }
     }
-    
-    private var didAwakeFromNib = false
+
+    internal private(set) var didAwakeFromNib = false
+    internal private(set) var isAlreadyExecuteDidAwakeFromNibBlock = false
 
     open override func awakeFromNib() {
         super.awakeFromNib()
         
         /*
-            We can't be sure whether didAwakeFromNibBlock is set 
+            We can't be sure whether didAwakeFromNibBlock is nil
             before awakeFromNib() was called. But we must
-            perform the block eventually, once. So keep
+            perform the block once eventually, once. So keep
             track whether awakeFromNib is called.
          */
         
-        didAwakeFromNibBlock?()
+        if let block = didAwakeFromNibBlock {
+            block()
+            isAlreadyExecuteDidAwakeFromNibBlock = true
+        } else {
+            isAlreadyExecuteDidAwakeFromNibBlock = false
+        }
+
         didAwakeFromNib = true
     }
 

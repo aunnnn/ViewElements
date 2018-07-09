@@ -24,7 +24,16 @@ class AnyElementTests: XCTestCase {
         XCTAssert(el1 != el2)
     }
 
-    func testPublicInterfaces() {
+    func testEqualityofProperties() {
+        let el = ElementOf<MockView>(props: "A")
+        let anyEl = ElementOf<MockView>(props: "A").any
+        XCTAssert(type(of: anyEl.props) == type(of: el.props))
+        XCTAssert(type(of: anyEl.props) == MockView.PropsType.self)
+        XCTAssert(anyEl.props as! MockView.PropsType == el.props)
+        XCTAssert(el.identifier == anyEl.identifier)
+    }
+
+    func testBridgedFunctions() {
         let el1 = ElementOf<MockView>(props: "A").any
 
         XCTAssertTrue(el1.isPropsEqualTo(anotherProps: "A"))

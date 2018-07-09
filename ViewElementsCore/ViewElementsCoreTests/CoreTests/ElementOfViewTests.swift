@@ -40,16 +40,3 @@ class ElementOfViewTests: XCTestCase {
         XCTAssert(elCustomized.identifier.count == ("MockView".count + 6) , "Must include 6 random chars")
     }
 }
-
-final class MockView: UILabel, ElementableView {
-
-    typealias PropsType = String
-
-    func setup() {
-
-    }
-
-    func render(props: String) {
-        text = props
-    }
-}
