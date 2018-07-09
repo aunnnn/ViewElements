@@ -17,7 +17,7 @@ public enum SeparatorStyle: Equatable {
     internal func value(withCellBounds cellBounds: CGRect) -> UIEdgeInsets {
         switch self {
         case .hidden:
-            return UIEdgeInsets(top: 0, left: cellBounds.size.width, bottom: 0, right: 0)
+            return UIEdgeInsets(top: 0, left: cellBounds.width, bottom: 0, right: 0)
         case .full:
             return UIEdgeInsets.zero
         case let .insets(left, right):
