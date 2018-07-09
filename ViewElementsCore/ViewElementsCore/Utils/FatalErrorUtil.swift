@@ -8,6 +8,8 @@
 
 import Foundation
 
+// All the credits goes to https://stackoverflow.com/questions/32873212/unit-test-fatalerror-in-swift/44140448#44140448
+
 #if TEST
 // overrides Swift global `fatalError`
 public func fatalError(_ message: @autoclosure () -> String = "", file: StaticString = #file, line: UInt = #line) -> Never {
