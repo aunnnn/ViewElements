@@ -19,6 +19,7 @@ public protocol ElementableView where Self: UIView {
     func setup()
     func render(props: PropsType)
 
+    /// Default value is `.frame(.zero)`.
     static func buildMethod() -> ViewBuildMethod
 
     /// By default it's just the view's class name. Override if you want it to depend on props.
@@ -30,14 +31,9 @@ public extension ElementableView {
         return "\(Self.self)"
     }
 
+    /// Default value is `.frame(.zero)`.
     static func buildMethod() -> ViewBuildMethod {
         return .frame(.zero)
-    }
-}
-
-public extension ElementableView where Self: BaseNibView {
-    static func buildMethod() -> ViewBuildMethod {
-        return .nib
     }
 }
 
