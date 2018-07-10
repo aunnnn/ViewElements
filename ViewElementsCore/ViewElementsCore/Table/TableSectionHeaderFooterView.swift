@@ -35,6 +35,6 @@ internal class TableSectionHeaderFooterView: UITableViewHeaderFooterView {
             // If equal, do nothing
             return
         }
-        newHeaderFooter.anyElement.render(view: view, props: newHeaderFooter.anyElement.props)
+        newHeaderFooter.anyElement.unsafeRender(view: view, props: newHeaderFooter.anyElement.props)
     }
 }

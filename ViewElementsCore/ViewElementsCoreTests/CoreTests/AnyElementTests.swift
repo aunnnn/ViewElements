@@ -33,7 +33,7 @@ class AnyElementTests: XCTestCase {
         XCTAssert(el.identifier == anyEl.identifier)
     }
 
-    func testBridgedFunctions() {
+    func testBridgedElementFunctions() {
         let el1 = ElementOf<MockView>(props: "A").any
 
         XCTAssertTrue(el1.isPropsEqualTo(anotherProps: "A"))
@@ -44,7 +44,23 @@ class AnyElementTests: XCTestCase {
         XCTAssert(builtView is MockView)
 
         let mockView = builtView as! MockView
-        el1.render(view: mockView, props: "Hello")
+        el1.unsafeRender(view: mockView, props: "Hello")
         XCTAssert(mockView.text == "Hello")
+    }
+
+    func testRenderWrongPropsTypeShouldCrash() {
+        expectFatalError(expectedMessage: "Unexpected casting from props type \(Int.self) to \(String.self)") {
+            let mockViewElement = ElementOf<MockView>(props: "A").any
+            let builtView = mockViewElement.build()
+            mockViewElement.unsafeRender(view: builtView, props: 100)
+        }
+    }
+
+    func testRenderWrongViewTypeShouldCrash() {
+        expectFatalError(expectedMessage: "Unexpected casting from view type \(UIView.self) to \(MockView.self)") {
+            let mockViewElement = ElementOf<MockView>(props: "A").any
+            let wrongView = UIView()
+            mockViewElement.unsafeRender(view: wrongView, props: "B")
+        }
     }
 }

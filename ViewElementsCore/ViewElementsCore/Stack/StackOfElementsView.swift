@@ -134,12 +134,12 @@ open class StackOfElementsView: UIView, ElementableView {
                 if el.isPropsEqualTo(anotherProps: pel.props) {
                     return
                 } else {
-                    el.render(view: v, props: el.props)
+                    el.unsafeRender(view: v, props: el.props)
                 }
             }
         } else {
             zip(props.elements, stackView.arrangedSubviews).forEach { (el, v) in
-                el.render(view: v, props: el.props)
+                el.unsafeRender(view: v, props: el.props)
             }
         }
     }

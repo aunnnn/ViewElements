@@ -20,25 +20,22 @@ public struct AnyElement: Equatable {
     let identifier: String
     let props: AnyProps
     private let _build: () -> UIView
-    private let _render: (UIView) -> (AnyProps) -> Void
+    private let _render: (_ anyView: UIView, _ anyProps: AnyProps) -> Void
     private let _isPropsEqualToAnotherProps: (AnyProps) -> Bool
 
     init<T>(_ element: ElementOf<T>) {
         identifier = element.identifier
         props = element.props
         _build = element.build
-        func render(view: UIView) -> (AnyProps) -> Void {
-            return { [weak view] (anyProps: AnyProps) -> Void in
-                guard let typedProps = anyProps as? T.PropsType else {
-                    warn("Unexpected casting from props type \(type(of: anyProps)) to \(T.PropsType.self)")
-                    return
-                }
-                guard let typedView = view as? T else {
-                    warn("Unexpected casting from view type \(type(of: view)) to \(T.self)")
-                    return
-                }
-                typedView.render(props: typedProps)
+        
+        func render(anyView: UIView, anyProps: Any) -> Void {
+            guard let typedProps = anyProps as? T.PropsType else {
+                fatalError("Unexpected casting from props type \(type(of: anyProps)) to \(T.PropsType.self)")
             }
+            guard let typedView = anyView as? T else {
+                fatalError("Unexpected casting from view type \(type(of: anyView)) to \(T.self)")
+            }
+            typedView.render(props: typedProps)
         }
 
         func isPropsEqualTo(anotherProps: AnyProps) -> Bool {
@@ -49,7 +46,7 @@ public struct AnyElement: Equatable {
             return element.props == typedAnotherProps
         }
 
-        _render = render(view:)
+        _render = render(anyView:anyProps:)
         _isPropsEqualToAnotherProps = isPropsEqualTo(anotherProps:)
     }
 
@@ -57,8 +54,11 @@ public struct AnyElement: Equatable {
         return _build()
     }
 
-    func render(view: UIView, props: AnyProps) -> Void {
-        _render(view)(props)
+    /// Render any view with any props.
+    ///
+    /// **IMPORTANT:** `view` and `props` must be correct type for the wrapped element or it will crash.
+    func unsafeRender(view: UIView, props: AnyProps) -> Void {
+        _render(view, props)
     }
 
     func isPropsEqualTo(anotherProps: AnyProps) -> Bool {

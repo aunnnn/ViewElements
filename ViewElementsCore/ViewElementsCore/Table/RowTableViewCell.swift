@@ -37,7 +37,7 @@ final class RowTableViewCell: UITableViewCell {
         if let row = row, row.anyElement.isPropsEqualTo(anotherProps: newRow.anyElement.props) {
             return
         } else {
-            newRow.anyElement.render(view: view, props: newRow.anyElement.props)
+            newRow.anyElement.unsafeRender(view: view, props: newRow.anyElement.props)
         }
     }
 
