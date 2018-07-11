@@ -29,7 +29,7 @@ extension XCTestCase {
         // act, perform on separate thead because a call to fatalError pauses forever
         DispatchQueue.global(qos: .userInitiated).async(execute: testcase)
 
-        waitForExpectations(timeout: 0.5) { _ in
+        waitForExpectations(timeout: 1.0) { _ in
             defer {
                 // clean up
                 FatalErrorUtil.restoreFatalError()
