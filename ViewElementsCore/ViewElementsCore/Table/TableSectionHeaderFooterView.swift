@@ -19,7 +19,7 @@ internal class TableSectionHeaderFooterView: UITableViewHeaderFooterView {
         let view = headerFooter.anyElement.build()
         _elementView = view
         contentView.addSubview(view)
-        view.al_edgesToLayoutMarginsGuide(toView: contentView)
+        view.al_edgesToLayoutMarginsGuide(ofView: contentView)
     }
 
     required init?(coder aDecoder: NSCoder) {

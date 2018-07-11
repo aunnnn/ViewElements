@@ -47,7 +47,7 @@ open class StackOfElementsView: UIView, ElementableView {
     public func setup() {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stackView)
-        stackView.al_edgesToLayoutMarginsGuide(toView: self)
+        stackView.al_edgesToLayoutMarginsGuide(ofView: self)
     }
 
     public func render(props: Stack) {

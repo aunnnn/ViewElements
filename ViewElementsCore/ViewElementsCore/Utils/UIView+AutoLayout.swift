@@ -29,7 +29,7 @@ public extension UIView {
 
     /// Pin self to view's margins guide.
     @discardableResult
-    func al_edgesToLayoutMarginsGuide(toView view: UIView, priority: UILayoutPriority = .required) -> UIView {
+    func al_edgesToLayoutMarginsGuide(ofView view: UIView, priority: UILayoutPriority = .required) -> UIView {
         self.translatesAutoresizingMaskIntoConstraints = false
         let guide = view.layoutMarginsGuide
         let constraints = [
