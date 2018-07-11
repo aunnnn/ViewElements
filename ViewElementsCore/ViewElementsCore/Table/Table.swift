@@ -121,8 +121,6 @@ public struct Table: Equatable {
     /// If `true` (default), hide the trailing separators in the table view.
     public var hidesTrailingSeparators: Bool = true
 
-    public var isRootTable: Bool = true
-
     public subscript(indexPath: IndexPath) -> Row {
         get {
             return sections[indexPath.section].rows[indexPath.row]
