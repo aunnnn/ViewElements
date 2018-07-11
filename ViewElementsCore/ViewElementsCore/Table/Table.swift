@@ -40,7 +40,7 @@ public struct Row: ElementContainer {
     public var separatorStyle: SeparatorStyle = .hidden
 
     /// `estimatedRowHeight` will also get updated as cell is displayed to reflect latest (most accurate) height value.
-    public var estimatedRowHeight: CGFloat? = nil
+    public var estimatedRowHeight: CGFloat?
     public var rowHeight: CGFloat = UITableViewAutomaticDimension {
         didSet {
             // if not fixed height, also set estimatedRowHeight to rowHeight
@@ -57,8 +57,6 @@ public struct Row: ElementContainer {
     public init<T>(_ element: ElementOf<T>) {
         anyElement = AnyElement(element)
     }
-
-
 }
 
 public struct SectionHeaderFooter: ElementContainer {
@@ -70,7 +68,7 @@ public struct SectionHeaderFooter: ElementContainer {
     public var isUserInteractionEnabled: Bool = true
     public var layoutMargins: LayoutMargins = .zero
 
-    public var estimatedHeaderFooterHeight: CGFloat? = nil
+    public var estimatedHeaderFooterHeight: CGFloat?
     public var headerFooterHeight: CGFloat = UITableViewAutomaticDimension {
         didSet {
             if hasFixedHeight {
