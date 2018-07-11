@@ -47,16 +47,22 @@ class TableTests: XCTestCase {
         XCTAssert(table == table2)
     }
 
-    func testTableSubscript() {
+    func testTableSubscripts() {
         func row(num: Int) -> Row {
             return Row(ElementOf<MockView>(props: "\(num)"))
         }
         let s0 = Section(rows: [row(num: 0), row(num: 1)])
         let s1 = Section(rows: [row(num: 2), row(num: 3)])
-        let table = Table(sections: [s0, s1])
+
+        var table = Table(sections: [s0, s1])
+
         XCTAssert(table[IndexPath(row: 0, section: 0)] == row(num: 0))
         XCTAssert(table[IndexPath(row: 1, section: 0)] == row(num: 1))
         XCTAssert(table[IndexPath(row: 0, section: 1)] == row(num: 2))
         XCTAssert(table[IndexPath(row: 1, section: 1)] == row(num: 3))
+
+        table[IndexPath(row: 1, section: 1)] = row(num: 999)
+
+        XCTAssert(table[IndexPath(row: 1, section: 1)] == row(num: 999))
     }
 }
