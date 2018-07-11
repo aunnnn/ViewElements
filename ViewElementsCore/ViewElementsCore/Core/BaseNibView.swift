@@ -15,7 +15,8 @@ import UIKit
 /// **IMPORTANT**: If your nib name doesn't match the class name, `override
 /// open class func buildMethod() -> ViewBuildMethod` too.
 open class BaseNibView: UIView {
-    
+
+    // This should be set once (by the framework) on creating a new view instance.
     internal var didAwakeFromNibBlock: (() -> Void)? {
         didSet {
             // Block not nil, already awake, but has not called the block yet.
@@ -31,22 +32,8 @@ open class BaseNibView: UIView {
 
     open override func awakeFromNib() {
         super.awakeFromNib()
-        
-        /*
-            We can't be sure whether didAwakeFromNibBlock is nil
-            before awakeFromNib() was called. But we must
-            perform the block once eventually, once. So keep
-            track whether awakeFromNib is called.
-         */
-        
-        if let block = didAwakeFromNibBlock {
-            block()
-            isAlreadyExecuteDidAwakeFromNibBlock = true
-        } else {
-            isAlreadyExecuteDidAwakeFromNibBlock = false
-        }
-
         didAwakeFromNib = true
+        isAlreadyExecuteDidAwakeFromNibBlock = false
     }
 
     open class func buildMethod() -> ViewBuildMethod {
