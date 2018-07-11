@@ -1,6 +1,7 @@
 # ViewElements
 ![Travis](https://travis-ci.org/aunnnn/ViewElements.svg?branch=master)
 [![codecov](https://codecov.io/gh/aunnnn/ViewElements/branch/master/graph/badge.svg)](https://codecov.io/gh/aunnnn/ViewElements)
+[![codebeat badge](https://codebeat.co/badges/1892fd4e-29aa-4a57-8ba3-ac090aea2a13)](https://codebeat.co/projects/github-com-aunnnn-viewelements-master)
 [![Version](https://img.shields.io/cocoapods/v/ViewElements.svg?style=flat)](http://cocoapods.org/pods/ViewElements)
 [![License](https://img.shields.io/cocoapods/l/ViewElements.svg?style=flat)](http://cocoapods.org/pods/ViewElements)
 [![Platform](https://img.shields.io/cocoapods/p/ViewElements.svg?style=flat)](http://cocoapods.org/pods/ViewElements)
