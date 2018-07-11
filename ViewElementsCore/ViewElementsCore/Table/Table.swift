@@ -108,11 +108,14 @@ public struct Table: Equatable {
     
     public var sections: [Section]
 
-    /// If `true` (default), each FormRow's estimatedRowHeight will be updated with actual value after displaying the cell. If your cell heights are changing frequently, then you might want to set this to `false`.
+    /// If `true` (default), each FormRow's estimatedRowHeight will be updated
+    /// with actual value after displaying the cell. If your cell heights are
+    /// changing frequently, then you might want to set this to `false`.
     public var updatesEstimatedRowHeights: Bool = true
     public var updatesEstimatedHeaderFooterHeights: Bool = true
 
-    /// Default is `false`. If `true`, a row height of previously displayed cells will be used as `estimatedRowHeight` of subsequent cells with the same reuseID.
+    /// Default is `false`. If `true`, a row height of previously displayed cells
+    /// will be used as `estimatedRowHeight` of subsequent cells with the same reuseID.
     ///
     /// This is useful when we don't set estimatedRowHeight manually.
     public var guessesSameHeightsForCellsWithSameType: Bool = false
