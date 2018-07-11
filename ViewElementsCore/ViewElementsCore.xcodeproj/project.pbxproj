@@ -31,6 +31,7 @@
 		303AEACD20F2575100270B71 /* TestBuildViewFromNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 303AEACC20F2575100270B71 /* TestBuildViewFromNib.xib */; };
 		30433CFB20F0B8410054224F /* UIColor+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30433CFA20F0B8410054224F /* UIColor+Equatable.swift */; };
 		304F48EE20F138E400076241 /* StackOfElementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F48ED20F138E400076241 /* StackOfElementsView.swift */; };
+		3050263620F6142F003D0CCA /* SectionHeaderFooterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3050263520F6142F003D0CCA /* SectionHeaderFooterTests.swift */; };
 		305C1C5620F38F7800ADBBE7 /* FatalErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305C1C5520F38F7800ADBBE7 /* FatalErrorUtil.swift */; };
 		305C1C5820F38FEB00ADBBE7 /* XCTestCase+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305C1C5720F38FEB00ADBBE7 /* XCTestCase+Extension.swift */; };
 		30A18A0E20F21C2B00103699 /* ViewElementsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306AAF1B20EE19B800F89A10 /* ViewElementsCore.framework */; };
@@ -80,6 +81,7 @@
 		303AEACC20F2575100270B71 /* TestBuildViewFromNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestBuildViewFromNib.xib; sourceTree = "<group>"; };
 		30433CFA20F0B8410054224F /* UIColor+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Equatable.swift"; sourceTree = "<group>"; };
 		304F48ED20F138E400076241 /* StackOfElementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackOfElementsView.swift; sourceTree = "<group>"; };
+		3050263520F6142F003D0CCA /* SectionHeaderFooterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderFooterTests.swift; sourceTree = "<group>"; };
 		305C1C5520F38F7800ADBBE7 /* FatalErrorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalErrorUtil.swift; sourceTree = "<group>"; };
 		305C1C5720F38FEB00ADBBE7 /* XCTestCase+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extension.swift"; sourceTree = "<group>"; };
 		306AAF1B20EE19B800F89A10 /* ViewElementsCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ViewElementsCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -215,6 +217,7 @@
 			children = (
 				302214B320F39E8C00E26D3A /* RowTests.swift */,
 				302214B520F3A40F00E26D3A /* SectionTests.swift */,
+				3050263520F6142F003D0CCA /* SectionHeaderFooterTests.swift */,
 			);
 			path = TableTests;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				305C1C5820F38FEB00ADBBE7 /* XCTestCase+Extension.swift in Sources */,
 				30EEAF7C20F2230C00E4DFCE /* UIView+AutoLayoutTests.swift in Sources */,
 				302214AB20F3994400E26D3A /* InvalidNibView.swift in Sources */,
+				3050263620F6142F003D0CCA /* SectionHeaderFooterTests.swift in Sources */,
 				30BA90A820F36E5600271FFD /* BaseNibViewTests.swift in Sources */,
 				30BF7A7320F2712000DCD26A /* AnyElementTests.swift in Sources */,
 				30BF7A7120F2702400DCD26A /* ElementableViewTests.swift in Sources */,

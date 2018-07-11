@@ -20,6 +20,29 @@ class SectionTests: XCTestCase {
         XCTAssert(section.footer == nil)
     }
 
+    func testSectionIsValueType() {
+        let el = ElementOf<MockView>(props: "Hello")
+        let rows = [Row(el)]
+        let header = SectionHeader(el)
+        let footer = SectionFooter(el)
+
+        let section = Section(rows: rows, header: header, footer: footer)
+        var copiedSection = section
+
+        copiedSection.rows = []
+        copiedSection.header = nil
+        copiedSection.footer = nil
+
+        XCTAssert(section.rows == rows)
+        XCTAssert(copiedSection.rows == [])
+
+        XCTAssert(section.header == header)
+        XCTAssert(copiedSection.header == nil)
+
+        XCTAssert(section.footer == footer)
+        XCTAssert(copiedSection.footer == nil)
+    }
+
     func testCreatingSectionWithHeaderOrFooter() {
         let el = ElementOf<MockView>(props: "Hello")
         let rows = [Row(el)]
