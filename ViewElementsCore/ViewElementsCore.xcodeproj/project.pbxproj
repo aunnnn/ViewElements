@@ -83,6 +83,7 @@
 		305C1C5520F38F7800ADBBE7 /* FatalErrorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatalErrorUtil.swift; sourceTree = "<group>"; };
 		305C1C5720F38FEB00ADBBE7 /* XCTestCase+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extension.swift"; sourceTree = "<group>"; };
 		306AAF1B20EE19B800F89A10 /* ViewElementsCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ViewElementsCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		30842E3620F4AB22000C97DD /* InvalidCustomInitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidCustomInitView.swift; sourceTree = "<group>"; };
 		30A18A0920F21C2B00103699 /* ViewElementsCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ViewElementsCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		30A18A0D20F21C2B00103699 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30A18A1420F21CD700103699 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
@@ -181,6 +182,7 @@
 				302214AE20F399A700E26D3A /* TestBuildViewFromNib.swift */,
 				3035273320F26F9700A8F76E /* TestBuildViewFromNibWithDifferentName.xib */,
 				303AEACC20F2575100270B71 /* TestBuildViewFromNib.xib */,
+				30842E3620F4AB22000C97DD /* InvalidCustomInitView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";

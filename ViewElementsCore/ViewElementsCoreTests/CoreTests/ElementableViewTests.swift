@@ -53,4 +53,8 @@ class TestCustomizingView: UILabel, ElementableView {
     static func viewIdentifier(props: PropsType) -> String {
         return props
     }
+
+    static func buildMethod() -> ViewBuildMethod {
+        return .frame(.zero)
+    }
 }

@@ -12,9 +12,11 @@ import XCTest
 class ElementableViewBuildMethodTests: XCTestCase {
 
     func testBuildMethodInit() {
-        TestBuildView.currentBuildMethod = .frame(.zero)
+        // Must override init(frame:)!
+        TestBuildView.currentBuildMethod = .frame(.init(x: 0, y: 1, width: 2, height: 3))
         let view = ElementOf<TestBuildView>(props: "Hello").build()
         XCTAssert(view.payload == "From frame")
+        XCTAssert(view.frame == .init(x: 0, y: 1, width: 2, height: 3))
     }
 
     func testBuildMethodCustom() {
@@ -25,15 +27,24 @@ class ElementableViewBuildMethodTests: XCTestCase {
         XCTAssert(view.payload == "From custom")
     }
 
-    func testBuildMethodNib() {
-        TestBuildView.currentBuildMethod = .nib
+    func testBuildMethodNibWithViewClassName() {
+        TestBuildViewFromNib.overiddenCustomNibNameForTesting = nil // This will use default name, which is the view's class name
         let view = ElementOf<TestBuildViewFromNib>(props: "Hello").build()
         XCTAssert(view.payload == "From nib")
     }
 
     func testBuildMethodNibWithName() {
-        TestBuildView.currentBuildMethod = .nibWithName("TestBuildViewFromNibWithDifferentName")
+        TestBuildViewFromNib.overiddenCustomNibNameForTesting = "TestBuildViewFromNibWithDifferentName"
         let view = ElementOf<TestBuildViewFromNib>(props: "Hello").build()
-        XCTAssert(view.payload == "From nib")
+        XCTAssert(view.payload == "From nib with custom class name")
+    }
+
+    func testBuildMethodCustomBlockThatReturnWrongViewTypeShouldCrash() {
+        expectFatalError(expectedMessage: "Expected a view instantiated from custom block to have type \(TestBuildView.self), but it actually is \(UIView.self)") {
+            TestBuildView.currentBuildMethod = .custom(block: { () -> UIView in
+                return UIView()
+            })
+            _ = ElementOf<TestBuildView>(props: "Hello").build()
+        }
     }
 }

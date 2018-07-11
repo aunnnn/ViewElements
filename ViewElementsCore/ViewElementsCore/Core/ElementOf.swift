@@ -30,11 +30,6 @@ public extension ElementableView {
     static func viewIdentifier(props: PropsType) -> String {
         return "\(Self.self)"
     }
-
-    /// Default value is `.frame(.zero)`.
-    static func buildMethod() -> ViewBuildMethod {
-        return .frame(.zero)
-    }
 }
 
 public protocol Element: Equatable {
@@ -90,9 +85,10 @@ public struct ElementOf<View: ElementableView>: Element {
     public func build() -> View {
         switch View.buildMethod() {
         case .frame(let f):
-            if false == View.instancesRespond(to: #selector(View.init(frame:))) {
-                fatalError("`init(frame:)` not implemented but is called. You might have called this directly or indirectly (e.g., via using `.frame` for the ElementableView's buidMethod). If you implement custom initializer(s) for your UIView's subclass, make sure to override `init(frame:)`.")
-            }
+            // TODO: How to check for the ability to `init(frame:)`
+            // fatalError("Detected illegal use of buildMethod `.frame(CGRect)` but `init(frame:)` is not implemented. Usually this means `\(View.self)` has its own custom (designated) initializers. To use `.frame(CGRect)` as a build method, override `init(frame:)`. If you intend to create views only via custom initializers, use `.custom(() -> UIView)` as a build method.")
+            // Read More: https://stackoverflow.com/questions/28187261/ios-swift-fatal-error-use-of-unimplemented-initializer-init
+            // Doc: https://docs.swift.org/swift-book/LanguageGuide/Initialization.html#ID222
             let view = View(frame: f)
             setup(view)
             return view
@@ -111,9 +107,7 @@ public struct ElementOf<View: ElementableView>: Element {
     }
 
     private func buildFromNib(name: String = "\(View.self)") -> View {
-        guard let nib = Bundle(for: View.self).loadNibNamed(name, owner: nil, options: nil) else {
-            fatalError("The nib with name '\(View.self)' is not found.")
-        }
+        let nib = Bundle(for: View.self).loadNibNamed(name, owner: nil, options: nil)!
         let view = nib.first! as! View
         guard let baseNibView = view as? BaseNibView else {
             fatalError("A view instantiated from nib name \(name) must subclass from 'BaseNibView'.")

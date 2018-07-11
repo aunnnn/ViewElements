@@ -16,9 +16,16 @@ class TestBuildViewFromNib: BaseNibView, ElementableView {
     var payload: String? = nil
     var isSetUp = false
 
+    /// Set this before testing
+    static var overiddenCustomNibNameForTesting: String? = nil
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        payload = "From nib"
+        if TestBuildViewFromNib.overiddenCustomNibNameForTesting != nil {
+            payload = "From nib with custom class name"
+        } else {
+            payload = "From nib"
+        }
     }
 
     func setup() {
@@ -27,5 +34,12 @@ class TestBuildViewFromNib: BaseNibView, ElementableView {
 
     func render(props: TestBuildViewFromNib.PropsType) {
 
+    }
+
+    override class func buildMethod() -> ViewBuildMethod {
+        guard let customName = TestBuildViewFromNib.overiddenCustomNibNameForTesting else {
+            return super.buildMethod()
+        }
+        return .nibWithName(customName)
     }
 }

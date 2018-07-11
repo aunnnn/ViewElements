@@ -28,13 +28,6 @@ class BaseNibViewTests: XCTestCase {
         XCTAssert(view.didAwakeFromNibBlock != nil, "`didAwakeFromNibBlock` should be set for the built view from nib")
     }
 
-    func testNibViewThatDoesNotInheritFromBaseNibViewMustCrash() {
-        expectFatalError(expectedMessage: "A view instantiated from nib name \(InvalidNibView.self) must subclass from 'BaseNibView'.") {
-            let el = ElementOf<InvalidNibView>(props: "Hello")
-            _ = el.build()
-        }
-    }
-
     func testMustExecuteAwakeFromNibBlock() {
         let el = ElementOf<TestBuildViewFromNib>(props: "Hello")
         let view = el.build()
@@ -43,5 +36,11 @@ class BaseNibViewTests: XCTestCase {
         XCTAssertTrue(view.isAlreadyExecuteDidAwakeFromNibBlock)
         XCTAssertTrue(view.isSetUp)
     }
-    
+
+    func testNibViewThatDoesNotInheritFromBaseNibViewMustCrash() {
+        expectFatalError(expectedMessage: "A view instantiated from nib name \(InvalidNibView.self) must subclass from 'BaseNibView'.") {
+            let el = ElementOf<InvalidNibView>(props: "Hello")
+            _ = el.build()
+        }
+    }
 }

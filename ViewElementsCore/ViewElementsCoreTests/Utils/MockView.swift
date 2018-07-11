@@ -20,4 +20,8 @@ final class MockView: UILabel, ElementableView {
     func render(props: String) {
         text = props
     }
+
+    static func buildMethod() -> ViewBuildMethod {
+        return .frame(.zero)
+    }
 }
