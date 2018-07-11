@@ -104,7 +104,6 @@ extension TableOfElementsView: UITableViewDataSource {
                 cell = reusedCell
             } else {
                 cell = RowTableViewCell(row: row, reuseIdentifier: reuseId)
-                print("Init cell with reuseId \(reuseId)")
             }
         }
 

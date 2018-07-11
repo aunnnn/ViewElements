@@ -38,7 +38,9 @@ class BaseNibViewTests: XCTestCase {
     }
 
     func testNibViewThatDoesNotInheritFromBaseNibViewMustCrash() {
-        expectFatalError(expectedMessage: "A view instantiated from nib name \(InvalidNibView.self) must subclass from 'BaseNibView'.") {
+        expectFatalError(expectedMessage: "A view instantiated from nib name \(InvalidNibView.self) must subclass from 'BaseNibView'.", customAssert: { (actual, _) in
+            return actual.contains("must subclass from 'BaseNibView'.")
+        }) {
             let el = ElementOf<InvalidNibView>(props: "Hello")
             _ = el.build()
         }

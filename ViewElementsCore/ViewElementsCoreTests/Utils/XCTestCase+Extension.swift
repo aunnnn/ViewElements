@@ -11,7 +11,9 @@ import XCTest
 @testable import ViewElementsCore
 
 extension XCTestCase {
-    func expectFatalError(expectedMessage: String, testcase: @escaping () -> Void) {
+    func expectFatalError(expectedMessage: String,
+                          customAssert: @escaping (_ actual: String, _ expected: String) -> Bool = { $0 == $1 },
+                          testcase: @escaping () -> Void) {
 
         // arrange
         let expectation = self.expectation(description: "expectingFatalError")
@@ -28,11 +30,18 @@ extension XCTestCase {
         DispatchQueue.global(qos: .userInitiated).async(execute: testcase)
 
         waitForExpectations(timeout: 0.5) { _ in
-            // assert
-            XCTAssertEqual(assertionMessage, expectedMessage)
+            defer {
+                // clean up
+                FatalErrorUtil.restoreFatalError()
+            }
 
-            // clean up
-            FatalErrorUtil.restoreFatalError()
+            guard let actualMessage = assertionMessage else {
+                XCTFail("No fatalError detected.")
+                return
+            }
+            
+            // assert
+            XCTAssert(customAssert(actualMessage, expectedMessage))
         }
     }
 }
