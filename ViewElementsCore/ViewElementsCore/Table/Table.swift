@@ -107,6 +107,7 @@ public struct Section: Equatable {
 }
 
 public struct Table: Equatable {
+    
     public var sections: [Section]
 
     /// If `true` (default), each FormRow's estimatedRowHeight will be updated with actual value after displaying the cell. If your cell heights are changing frequently, then you might want to set this to `false`.
@@ -135,6 +136,6 @@ public struct Table: Equatable {
     }
 
     public init(rows: [Row]) {
-        self.sections = [Section(rows: rows)]
+        self.init(sections: [Section(rows: rows)])
     }
 }
