@@ -10,24 +10,25 @@ import UIKit
 
 /// Model of stack
 public struct Stack: Equatable, ElementContainer {
-    public typealias Element = AnyElement
-    let elements: [Element]
-    let layout: Layout = Layout(axis: .horizontal, distribution: .fill, alignment: .top, spacing: 0)
+    typealias Element = AnyElementConvertible
+
+    let elements: [AnyElement]
+    public var layout: Layout = Layout(axis: .horizontal, distribution: .fill, alignment: .top, spacing: 0)
 
     // MARK: ElementContainer's
     public var backgroundColor: UIColor = .clear
     public var isUserInteractionEnabled: Bool = true
     public var layoutMargins: LayoutMargins = .zero
 
-    public init(_ elements: [Element]) {
-        self.elements = elements
+    public init(_ elements: [AnyElementConvertible]) {
+        self.elements = elements.map { $0.any }
     }
 
     public struct Layout: Equatable {
-        public let axis: UILayoutConstraintAxis
-        public let distribution: UIStackViewDistribution
-        public let alignment: UIStackViewAlignment
-        public let spacing: CGFloat
+        public var axis: UILayoutConstraintAxis
+        public var distribution: UIStackViewDistribution
+        public var alignment: UIStackViewAlignment
+        public var spacing: CGFloat
     }
 }
 
@@ -109,7 +110,6 @@ open class StackOfElementsView: UIView, ElementableView {
         prevProps = props
         print("""
             Render \(StackOfElementsView.viewIdentifier(props: props))
-            Props:  \(props.elements.map { "\($0.props)" }.joined(separator: ","))
             Structure change?\(needsUpdateStructure)
             Layout change?\(needsLayoutUpdate)
             Props change?\(needsPropsUpdate)

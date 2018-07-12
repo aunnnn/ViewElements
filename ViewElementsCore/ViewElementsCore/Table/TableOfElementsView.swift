@@ -184,7 +184,7 @@ extension TableOfElementsView: UITableViewDelegate {
         guard table.guessesSameHeightsForCellsWithSameType else { return estimatedHeight }
 
         // if already displayed, use estimatedRowHeight
-        if  displayedIndexPaths.contains(indexPath) {
+        if displayedIndexPaths.contains(indexPath) {
             return estimatedHeight
         } else {
             return cellIDsToGuessedHeights[row.anyElement.identifier] ?? estimatedHeight

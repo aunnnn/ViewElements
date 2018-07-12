@@ -10,8 +10,12 @@ import UIKit
 
 public typealias AnyProps = Any
 
-public extension ElementOf {
-    var any: AnyElement {
+public protocol AnyElementConvertible {
+    var any: AnyElement { get }
+}
+
+extension ElementOf: AnyElementConvertible {
+    public var any: AnyElement {
         return AnyElement(self)
     }
 }
