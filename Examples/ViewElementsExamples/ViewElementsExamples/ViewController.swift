@@ -26,14 +26,17 @@ class ViewController: UIViewController {
             return r
         }
         let sel: (Int) -> Row = { i in
-            let stack = Stack([ElementOf<TestNibView>(props: "\(i) s left").any,
-                               ElementOf<TestNibView>(props: "\(i) s right").any])
+            var vstack = Stack([ElementOf<TestNibView>(props: "\(i) V up"), ElementOf<TestNibView>(props: "\(i) V down")])
+            vstack.layout.axis = .vertical
+            let vertical = Component(props: vstack)
+            let stack = Stack([ElementOf<TestNibView>(props: "\(i) s left"),
+                               vertical])
             let sel = Row(Component(props: stack))
             return sel
         }
         rows = [sel(1222)] + rows + (0...4).map { i in sel(i) } + rows + (0...4).map { i in sel(100+i) }
-        let s = Section(rows: rows, footer: SectionFooter(ElementOf<TestNibView>(props: "1st Footer!")))
-        var table = Table(sections: [s, s])
+        let s = { (num: Int) -> Section in Section(rows: rows, footer: SectionFooter(ElementOf<TestNibView>(props: "\(num) Footer!"))) }
+        var table = Table(sections: [s(1), s(2)])
         table.guessesSameHeightsForCellsWithSameType = true
         let tableView = TableOfElementsView()
         view.addSubview(tableView)
