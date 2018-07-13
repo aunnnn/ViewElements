@@ -29,6 +29,7 @@
 		303AEAC920F24BFB00270B71 /* ElementOfViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AEAC820F24BFB00270B71 /* ElementOfViewTests.swift */; };
 		303AEACB20F2503400270B71 /* ElementableViewBuildMethodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303AEACA20F2503400270B71 /* ElementableViewBuildMethodTests.swift */; };
 		303AEACD20F2575100270B71 /* TestBuildViewFromNib.xib in Resources */ = {isa = PBXBuildFile; fileRef = 303AEACC20F2575100270B71 /* TestBuildViewFromNib.xib */; };
+		303CAE6220F918BE00568183 /* TableOfElementsViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 303CAE6120F918BE00568183 /* TableOfElementsViewTests.swift */; };
 		30433CFB20F0B8410054224F /* UIColor+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30433CFA20F0B8410054224F /* UIColor+Equatable.swift */; };
 		304F48EE20F138E400076241 /* StackOfElementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304F48ED20F138E400076241 /* StackOfElementsView.swift */; };
 		3050263620F6142F003D0CCA /* SectionHeaderFooterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3050263520F6142F003D0CCA /* SectionHeaderFooterTests.swift */; };
@@ -80,6 +81,7 @@
 		303AEAC820F24BFB00270B71 /* ElementOfViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementOfViewTests.swift; sourceTree = "<group>"; };
 		303AEACA20F2503400270B71 /* ElementableViewBuildMethodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementableViewBuildMethodTests.swift; sourceTree = "<group>"; };
 		303AEACC20F2575100270B71 /* TestBuildViewFromNib.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestBuildViewFromNib.xib; sourceTree = "<group>"; };
+		303CAE6120F918BE00568183 /* TableOfElementsViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableOfElementsViewTests.swift; sourceTree = "<group>"; };
 		30433CFA20F0B8410054224F /* UIColor+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Equatable.swift"; sourceTree = "<group>"; };
 		304F48ED20F138E400076241 /* StackOfElementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackOfElementsView.swift; sourceTree = "<group>"; };
 		3050263520F6142F003D0CCA /* SectionHeaderFooterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderFooterTests.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 				302214B520F3A40F00E26D3A /* SectionTests.swift */,
 				3050263520F6142F003D0CCA /* SectionHeaderFooterTests.swift */,
 				3050263720F64387003D0CCA /* TableTests.swift */,
+				303CAE6120F918BE00568183 /* TableOfElementsViewTests.swift */,
 			);
 			path = TableTests;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 				302214A920F398D500E26D3A /* MockView.swift in Sources */,
 				302214B420F39E8C00E26D3A /* RowTests.swift in Sources */,
 				302214AF20F399A700E26D3A /* TestBuildViewFromNib.swift in Sources */,
+				303CAE6220F918BE00568183 /* TableOfElementsViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
