@@ -41,7 +41,7 @@ extension XCTestCase {
             }
             
             // assert
-            XCTAssert(customAssert(actualMessage, expectedMessage))
+            XCTAssert(customAssert(actualMessage, expectedMessage), "Expected: \(expectedMessage), but actual: \(actualMessage)")
         }
     }
 }
