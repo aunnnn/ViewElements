@@ -36,7 +36,7 @@ deploy:
 
 script:
   - set -o pipefail
-  - xcodebuild -destination 'platform=iOS Simulator,name=iPhone 5s,OS=11.3' -project ViewElementsCore/ViewElementsCore.xcodeproj -scheme ViewElementsCore test | xcpretty
+  - xcodebuild -destination 'platform=iOS Simulator,name=iPhone 5s,OS=11.3' -project ViewElementsCore/ViewElementsCore.xcodeproj -scheme ViewElementsCore build test | xcpretty
 
 notifications:
   email:
