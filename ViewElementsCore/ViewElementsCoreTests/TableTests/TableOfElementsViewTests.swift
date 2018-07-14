@@ -11,14 +11,21 @@ import XCTest
 
 class TableOfElementsViewTests: XCTestCase {
 
+    private func getMockElement(text: String) -> ElementOf<MockView> {
+        return ElementOf<MockView>(props: text)
+    }
+
     private func getMockTable(numberOfSections: Int) -> Table {
         func row(s: Int, r: Int) -> Row {
-            return Row(ElementOf<MockView>(props: "\(s),\(r)"))
+            return Row(getMockElement(text: "\(s),\(r)"))
         }
-        let sections = (0..<numberOfSections).map { s in
-            Section(rows: (0...s).map { r in
-                row(s: s, r: r)
+        let sections = (0..<numberOfSections).map { (s: Int) -> Section in
+            var section = Section(rows: (0...s).map { (r: Int) -> Row in
+                return row(s: s, r: r)
             })
+            section.header = SectionHeader(getMockElement(text: "Header in section \(s)"))
+            section.footer = SectionHeader(getMockElement(text: "Footer in section \(s)"))
+            return section
         }
         return Table(sections: sections)
     }
@@ -29,10 +36,9 @@ class TableOfElementsViewTests: XCTestCase {
         XCTAssert(tv.dataSource === tv)
     }
 
-    func testTableOfElementsViewDataSourceMethods() {
+    func testDataSourceMethods() {
         let table = getMockTable(numberOfSections: 3)
         let tv = TableOfElementsView()
-        tv.frame = .init(x: 0, y: 0, width: 300, height: 2000)
         tv.reload(table: table)
 
         let dataSource = tv.dataSource!
@@ -56,10 +62,50 @@ class TableOfElementsViewTests: XCTestCase {
         // Check all cells content
         for s in (0..<3) {
             for r in (0...s) {
-                let expectedLabelText = "\(s),\(r)"
-                let actualView = dataSource.tableView(tv, cellForRowAt: .init(row: r, section: s)).contentView.subviews.first! as! MockView
-                XCTAssert(actualView.text == expectedLabelText, "Cell content not match at \(s),\(r)")
+                let expectedCellText = "\(s),\(r)"
+                let actualCellText = (dataSource.tableView(tv, cellForRowAt: .init(row: r, section: s)).contentView.subviews.first! as! MockView).text
+                XCTAssertEqual(actualCellText, expectedCellText)
             }
         }
+    }
+
+    func testDelegateHeaderFooterViewMethods() {
+        let table = getMockTable(numberOfSections: 3)
+        let tv = TableOfElementsView()
+        tv.reload(table: table)
+
+        let delegate = tv.delegate!
+        for s in (0..<3) {
+            let expectedHeaderLabel = "Header in section \(s)"
+            let actualHeaderLabel = ((delegate.tableView!(tv, viewForHeaderInSection: s)! as! UITableViewHeaderFooterView).contentView.subviews.first! as! MockView).text
+            XCTAssertEqual(actualHeaderLabel, expectedHeaderLabel)
+
+            let expectedFooterLabel = "Footer in section \(s)"
+            let actualFooterLabel = ((delegate.tableView!(tv, viewForFooterInSection: s)! as! UITableViewHeaderFooterView).contentView.subviews.first! as! MockView).text
+            XCTAssertEqual(actualFooterLabel, expectedFooterLabel)
+        }
+    }
+
+    func testDelegateCellHeights() {
+        var table = getMockTable(numberOfSections: 3)
+        let tv = TableOfElementsView()
+        tv.reload(table: table)
+        let delegate = tv.delegate!
+
+        let targetIndex = IndexPath(row: 0, section: 0)
+
+        // Default heights
+        XCTAssertEqual(delegate.tableView!(tv, heightForRowAt: targetIndex), UITableViewAutomaticDimension)
+        XCTAssertEqual(delegate.tableView!(tv, estimatedHeightForRowAt: targetIndex), 44)
+
+        // Custom heights
+        table[targetIndex].estimatedRowHeight = 100
+        tv.reload(table: table)
+        XCTAssertEqual(delegate.tableView!(tv, estimatedHeightForRowAt: targetIndex), 100)
+
+        table[targetIndex].rowHeight = 200
+        tv.reload(table: table)
+        XCTAssertEqual(delegate.tableView!(tv, heightForRowAt: targetIndex), 200)
+        XCTAssertEqual(delegate.tableView!(tv, estimatedHeightForRowAt: targetIndex), 200) // Estimated height should also change
     }
 }
