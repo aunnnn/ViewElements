@@ -30,13 +30,21 @@ class TableOfElementsViewTests: XCTestCase {
         return Table(sections: sections)
     }
 
+    func testThatMockTableHasCorrectSectionsAndRows() {
+        let table = getMockTable(numberOfSections: 3)
+        XCTAssertEqual(table.sections.count, 3)
+        XCTAssertEqual(table.sections[0].rows.count, 1)
+        XCTAssertEqual(table.sections[1].rows.count, 2)
+        XCTAssertEqual(table.sections[2].rows.count, 3)
+    }
+
     func testThatItselfIsDataSourceAndDelegate() {
         let tv = TableOfElementsView()
         XCTAssert(tv.delegate === tv)
         XCTAssert(tv.dataSource === tv)
     }
 
-    func testDataSourceMethods() {
+    func testDataSourceAndCellContents() {
         let table = getMockTable(numberOfSections: 3)
         let tv = TableOfElementsView()
         tv.reload(table: table)
@@ -69,12 +77,14 @@ class TableOfElementsViewTests: XCTestCase {
         }
     }
 
-    func testDelegateHeaderFooterViewMethods() {
+    func testHeaderFooterViewContents() {
         let table = getMockTable(numberOfSections: 3)
         let tv = TableOfElementsView()
         tv.reload(table: table)
 
         let delegate = tv.delegate!
+
+        // Check content
         for s in (0..<3) {
             let expectedHeaderLabel = "Header in section \(s)"
             let actualHeaderLabel = ((delegate.tableView!(tv, viewForHeaderInSection: s)! as! UITableViewHeaderFooterView).contentView.subviews.first! as! MockView).text
@@ -84,6 +94,30 @@ class TableOfElementsViewTests: XCTestCase {
             let actualFooterLabel = ((delegate.tableView!(tv, viewForFooterInSection: s)! as! UITableViewHeaderFooterView).contentView.subviews.first! as! MockView).text
             XCTAssertEqual(actualFooterLabel, expectedFooterLabel)
         }
+    }
+
+    func testHeaderFooterViewHeights() {
+        var table = getMockTable(numberOfSections: 3)
+        let tv = TableOfElementsView()
+        tv.reload(table: table)
+
+        let delegate = tv.delegate!
+
+        // Default heights
+        XCTAssertEqual(delegate.tableView!(tv, estimatedHeightForHeaderInSection: 0), 44)
+        XCTAssertEqual(delegate.tableView!(tv, heightForHeaderInSection: 0), UITableViewAutomaticDimension)
+
+        // Change estimated height
+        table.sections[0].header?.estimatedHeaderFooterHeight = 100
+        tv.reload(table: table)
+        XCTAssertEqual(delegate.tableView!(tv, estimatedHeightForHeaderInSection: 0), 100)
+        XCTAssertEqual(delegate.tableView!(tv, heightForHeaderInSection: 0), UITableViewAutomaticDimension)
+
+        // Change row height
+        table.sections[0].header?.headerFooterHeight = 200
+        tv.reload(table: table)
+        XCTAssertEqual(delegate.tableView!(tv, estimatedHeightForHeaderInSection: 0), 200)
+        XCTAssertEqual(delegate.tableView!(tv, heightForHeaderInSection: 0), 200)
     }
 
     func testDelegateCellHeights() {
@@ -107,5 +141,73 @@ class TableOfElementsViewTests: XCTestCase {
         tv.reload(table: table)
         XCTAssertEqual(delegate.tableView!(tv, heightForRowAt: targetIndex), 200)
         XCTAssertEqual(delegate.tableView!(tv, estimatedHeightForRowAt: targetIndex), 200) // Estimated height should also change
+    }
+
+    func testWillDisplayCell() {
+        var table = getMockTable(numberOfSections: 3)
+        let tv = TableOfElementsView()
+        tv.reload(table: table)
+        let delegate = tv.delegate!
+
+        let targetIndex = IndexPath(row: 0, section: 0)
+
+        let cellUnderTest = RowTableViewCell(row: table[targetIndex], reuseIdentifier: "Test")
+
+        // Edit content
+        table[targetIndex] = Row(getMockElement(text: "New Row at 0,0"))
+
+        // Reload
+        tv.reload(table: table, thenReloadData: false)
+
+        // This should update cell content to the current table
+        delegate.tableView!(tv, willDisplay: cellUnderTest, forRowAt: targetIndex)
+
+        let actualText = (cellUnderTest.contentView.subviews.first! as! MockView).text
+        let expectedText = "New Row at 0,0"
+        XCTAssertEqual(actualText, expectedText)
+    }
+
+    func testWillDisplayHeader() {
+        var table = getMockTable(numberOfSections: 3)
+        let tv = TableOfElementsView()
+        tv.reload(table: table)
+        let delegate = tv.delegate!
+
+        let headerFooterUnderTest = TableSectionHeaderFooterView(headerFooter: table.sections[0].header!, reuseIdentifier: "Test")
+
+        // Edit content
+        table.sections[0].header = SectionHeaderFooter(getMockElement(text: "New Header at 0,0"))
+
+        // Reload
+        tv.reload(table: table, thenReloadData: false)
+
+        // This should update header footer content to the current table
+        delegate.tableView!(tv, willDisplayHeaderView: headerFooterUnderTest, forSection: 0)
+
+        let actualText = (headerFooterUnderTest.contentView.subviews.first! as! MockView).text
+        let expectedText = "New Header at 0,0"
+        XCTAssertEqual(actualText, expectedText)
+    }
+
+    func testWillDisplayFooter() {
+        var table = getMockTable(numberOfSections: 3)
+        let tv = TableOfElementsView()
+        tv.reload(table: table)
+        let delegate = tv.delegate!
+
+        let headerFooterUnderTest = TableSectionHeaderFooterView(headerFooter: table.sections[0].footer!, reuseIdentifier: "Test")
+
+        // Edit content
+        table.sections[0].footer = SectionHeaderFooter(getMockElement(text: "New Footer at 0,0"))
+
+        // Reload
+        tv.reload(table: table, thenReloadData: false)
+
+        // This should update header footer content to the current table
+        delegate.tableView!(tv, willDisplayFooterView: headerFooterUnderTest, forSection: 0)
+
+        let actualText = (headerFooterUnderTest.contentView.subviews.first! as! MockView).text
+        let expectedText = "New Footer at 0,0"
+        XCTAssertEqual(actualText, expectedText)
     }
 }
