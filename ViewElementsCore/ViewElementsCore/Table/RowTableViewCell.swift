@@ -35,6 +35,7 @@ final class RowTableViewCell: UITableViewCell {
         }
         let view = _elementView!
         if let row = row, row.anyElement.isPropsEqualTo(anotherProps: newRow.anyElement.props) {
+            // There's 'row' and it is already equal to 'newRow' -> do nothing
             return
         } else {
             newRow.anyElement.unsafeRender(view: view, props: newRow.anyElement.props)
