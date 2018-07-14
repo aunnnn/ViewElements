@@ -96,7 +96,7 @@ class TableOfElementsViewTests: XCTestCase {
         }
     }
 
-    func testHeaderFooterViewHeights() {
+    func testHeaderViewHeights() {
         var table = getMockTable(numberOfSections: 3)
         let tv = TableOfElementsView()
         tv.reload(table: table)
@@ -118,6 +118,30 @@ class TableOfElementsViewTests: XCTestCase {
         tv.reload(table: table)
         XCTAssertEqual(delegate.tableView!(tv, estimatedHeightForHeaderInSection: 0), 200)
         XCTAssertEqual(delegate.tableView!(tv, heightForHeaderInSection: 0), 200)
+    }
+
+    func testFooterViewHeights() {
+        var table = getMockTable(numberOfSections: 3)
+        let tv = TableOfElementsView()
+        tv.reload(table: table)
+
+        let delegate = tv.delegate!
+
+        // Default heights
+        XCTAssertEqual(delegate.tableView!(tv, estimatedHeightForFooterInSection: 0), 44)
+        XCTAssertEqual(delegate.tableView!(tv, heightForFooterInSection: 0), UITableViewAutomaticDimension)
+
+        // Change estimated height
+        table.sections[0].footer?.estimatedHeaderFooterHeight = 100
+        tv.reload(table: table)
+        XCTAssertEqual(delegate.tableView!(tv, estimatedHeightForFooterInSection: 0), 100)
+        XCTAssertEqual(delegate.tableView!(tv, heightForFooterInSection: 0), UITableViewAutomaticDimension)
+
+        // Change row height
+        table.sections[0].footer?.headerFooterHeight = 200
+        tv.reload(table: table)
+        XCTAssertEqual(delegate.tableView!(tv, estimatedHeightForFooterInSection: 0), 200)
+        XCTAssertEqual(delegate.tableView!(tv, heightForFooterInSection: 0), 200)
     }
 
     func testDelegateCellHeights() {
