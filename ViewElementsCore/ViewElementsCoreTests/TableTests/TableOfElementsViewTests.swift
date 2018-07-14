@@ -234,4 +234,51 @@ class TableOfElementsViewTests: XCTestCase {
         let expectedText = "New Footer at 0,0"
         XCTAssertEqual(actualText, expectedText)
     }
+
+    func testGuessesCellHeights() {
+        var table = getMockTable(numberOfSections: 3)
+        table.guessesSameHeightsForCellsWithSameType = true
+        let tv = TableOfElementsView()
+        tv.reload(table: table)
+        let delegate = tv.delegate!
+
+        let targetIndex = IndexPath(row: 0, section: 0)
+        let anotherIndex = IndexPath(row: 0, section: 1)
+
+        // Default estimated height
+        XCTAssertEqual(delegate.tableView!(tv, estimatedHeightForRowAt: anotherIndex), 44)
+
+        let cellUnderTest = RowTableViewCell(row: table[targetIndex], reuseIdentifier: "Test")
+        cellUnderTest.frame = .init(x: 0, y: 0, width: 300, height: 300)
+
+        // This should update estimated height to 300
+        delegate.tableView!(tv, willDisplay: cellUnderTest, forRowAt: targetIndex)
+
+        // Guessing should work
+        let estimatedHeight = delegate.tableView!(tv, estimatedHeightForRowAt: anotherIndex)
+        XCTAssertEqual(estimatedHeight, 300)
+    }
+
+    func testUpdateEstimatedRowHeights() {
+        let table = getMockTable(numberOfSections: 3)
+        let tv = TableOfElementsView()
+        tv.reload(table: table)
+        let delegate = tv.delegate!
+
+        let targetIndex = IndexPath(row: 0, section: 0)
+
+        let cellUnderTest = RowTableViewCell(row: table[targetIndex], reuseIdentifier: "Test")
+        cellUnderTest.frame = .init(x: 0, y: 0, width: 300, height: 300)
+
+        // Previously should be nil
+        XCTAssertNil(tv.table[targetIndex].estimatedRowHeight)
+        XCTAssertEqual(tv.table[targetIndex].rowHeight, UITableViewAutomaticDimension)
+
+        // This should update row's estimated height to 300
+        delegate.tableView!(tv, willDisplay: cellUnderTest, forRowAt: targetIndex)
+
+        // Estimated height should now be 300, rowHeight should be automatic (not change)
+        XCTAssertEqual(tv.table[targetIndex].estimatedRowHeight, 300)
+        XCTAssertEqual(tv.table[targetIndex].rowHeight, UITableViewAutomaticDimension)
+    }
 }
