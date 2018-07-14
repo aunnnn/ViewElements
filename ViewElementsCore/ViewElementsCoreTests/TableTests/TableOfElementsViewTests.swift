@@ -260,7 +260,7 @@ class TableOfElementsViewTests: XCTestCase {
     }
 
     func testUpdateEstimatedRowHeights() {
-        let table = getMockTable(numberOfSections: 3)
+        var table = getMockTable(numberOfSections: 3)
         let tv = TableOfElementsView()
         tv.reload(table: table)
         let delegate = tv.delegate!
@@ -280,5 +280,47 @@ class TableOfElementsViewTests: XCTestCase {
         // Estimated height should now be 300, rowHeight should be automatic (not change)
         XCTAssertEqual(tv.table[targetIndex].estimatedRowHeight, 300)
         XCTAssertEqual(tv.table[targetIndex].rowHeight, UITableViewAutomaticDimension)
+    }
+
+    func testUpdateEstimatedHeaderHeights() {
+        var table = getMockTable(numberOfSections: 3)
+        let tv = TableOfElementsView()
+        tv.reload(table: table)
+        let delegate = tv.delegate!
+
+        let headerUnderTest = TableSectionHeaderFooterView(headerFooter: table.sections[0].header!, reuseIdentifier: "Test")
+        headerUnderTest.frame = .init(x: 0, y: 0, width: 300, height: 300)
+
+        // Previously should be nil
+        XCTAssertNil(tv.table.sections[0].header?.estimatedHeaderFooterHeight)
+        XCTAssertEqual(tv.table.sections[0].header?.headerFooterHeight, UITableViewAutomaticDimension)
+
+        // This should update estimated height to 300
+        delegate.tableView!(tv, willDisplayHeaderView: headerUnderTest, forSection: 0)
+
+        // Estimated height should now be 300, rowHeight should be automatic (not change)
+        XCTAssertEqual(tv.table.sections[0].header?.estimatedHeaderFooterHeight, 300)
+        XCTAssertEqual(tv.table.sections[0].header?.headerFooterHeight, UITableViewAutomaticDimension)
+    }
+
+    func testUpdateEstimatedFooterHeights() {
+        var table = getMockTable(numberOfSections: 3)
+        let tv = TableOfElementsView()
+        tv.reload(table: table)
+        let delegate = tv.delegate!
+
+        let footerUnderTest = TableSectionHeaderFooterView(headerFooter: table.sections[0].footer!, reuseIdentifier: "Test")
+        footerUnderTest.frame = .init(x: 0, y: 0, width: 300, height: 300)
+
+        // Previously should be nil
+        XCTAssertNil(tv.table.sections[0].footer?.estimatedHeaderFooterHeight)
+        XCTAssertEqual(tv.table.sections[0].footer?.headerFooterHeight, UITableViewAutomaticDimension)
+
+        // This should update estimated height to 300
+        delegate.tableView!(tv, willDisplayFooterView: footerUnderTest, forSection: 0)
+
+        // Estimated height should now be 300, rowHeight should be automatic (not change)
+        XCTAssertEqual(tv.table.sections[0].footer?.estimatedHeaderFooterHeight, 300)
+        XCTAssertEqual(tv.table.sections[0].footer?.headerFooterHeight, UITableViewAutomaticDimension)
     }
 }
