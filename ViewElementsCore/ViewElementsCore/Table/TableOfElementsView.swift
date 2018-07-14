@@ -21,12 +21,8 @@ open class TableOfElementsView: UITableView {
 
     public private(set) var table: Table
 
-    public convenience init() {
-        self.init(table: Table(rows: []))
-    }
-
-    public init(table: Table) {        
-        self.table = table
+    public init() {
+        self.table = Table(rows: [])
         super.init(frame: .zero, style: .plain)
         setup()
     }
@@ -36,10 +32,12 @@ open class TableOfElementsView: UITableView {
         delegate = self
     }
 
-    public func reload(table: Table) {
+    public func reload(table: Table, thenReloadData: Bool=true) {
         self.table = table
         setTableAppearance(table)
-        reloadData()
+        if thenReloadData {
+            reloadData()
+        }
     }
 
     public required init?(coder aDecoder: NSCoder) {
