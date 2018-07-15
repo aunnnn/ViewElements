@@ -12,23 +12,49 @@ import UIKit
 public struct Stack: Equatable, ElementContainer {
     typealias Element = AnyElementConvertible
 
+    public typealias Axis = UILayoutConstraintAxis
+    public typealias Distribution = UIStackViewDistribution
+    public typealias Alignment = UIStackViewAlignment
+    public typealias Spacing = CGFloat
+
     let elements: [AnyElement]
-    public var layout: Layout = Layout(axis: .horizontal, distribution: .fill, alignment: .top, spacing: 0)
+    public var layout: Layout = Layout(axis: .horizontal,
+                                       distribution: .fill,
+                                       alignment: .top,
+                                       spacing: 0,
+                                       huggingPriority: .defaultLow,
+                                       compressionResistancePriority: .defaultHigh)
 
     // MARK: ElementContainer's
     public var backgroundColor: UIColor = .clear
     public var isUserInteractionEnabled: Bool = true
     public var layoutMargins: LayoutMargins = .zero
 
-    public init(_ elements: [AnyElementConvertible]) {
+    /// If true (default), it will stretch each view in the vertical stack to fill horizontally.
+    public var viewsInVerticalStackShouldFillHorizontally = true
+
+    public init(axis: Axis,
+                distribution: Distribution,
+                alignment: Alignment,
+                spacing: Spacing,
+                elements: [AnyElementConvertible]) {
         self.elements = elements.map { $0.any }
+        let layout = Layout(axis: axis,
+                            distribution: distribution,
+                            alignment: alignment,
+                            spacing: spacing,
+                            huggingPriority: .defaultLow,
+                            compressionResistancePriority: .defaultHigh)
+        self.layout = layout
     }
 
     public struct Layout: Equatable {
-        public var axis: UILayoutConstraintAxis
-        public var distribution: UIStackViewDistribution
-        public var alignment: UIStackViewAlignment
-        public var spacing: CGFloat
+        public var axis: Axis
+        public var distribution: Distribution
+        public var alignment: Alignment
+        public var spacing: Spacing
+        public var huggingPriority: UILayoutPriority
+        public var compressionResistancePriority: UILayoutPriority
     }
 }
 
@@ -98,7 +124,15 @@ open class StackOfElementsView: UIView, ElementableView {
                 v.removeFromSuperview()
             }
             props.elements.forEach { (e) in
-                stackView.addArrangedSubview(e.build())
+                let v = e.build()
+                stackView.addArrangedSubview(v)
+                if props.layout.axis == .vertical && props.viewsInVerticalStackShouldFillHorizontally {
+                    let constraints = [
+                        v.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+                        v.trailingAnchor.constraint(equalTo: stackView.trailingAnchor)
+                    ]
+                    NSLayoutConstraint.activate(constraints)
+                }
             }
         }
         if needsLayoutUpdate {

@@ -71,12 +71,6 @@ private extension TableOfElementsView {
         } else {
             v = TableSectionHeaderFooterView(headerFooter: headerFooter, reuseIdentifier: reuseId)
         }
-
-        // It's not recommended to set backgroundColor of header footer view.
-        v.preservesSuperviewLayoutMargins = false
-        v.layoutMargins = .zero
-
-        headerFooter.configure(container: v.contentView)
         return v
 
     }
@@ -104,15 +98,6 @@ extension TableOfElementsView: UITableViewDataSource {
                 cell = RowTableViewCell(row: row, reuseIdentifier: reuseId)
             }
         }
-
-        // Reset root cell to default style. (margins = 0)
-        cell.backgroundColor = row.backgroundColor
-        cell.selectionStyle = row.selectionStyle
-        cell.preservesSuperviewLayoutMargins = false
-        cell.layoutMargins = .zero
-
-        // Reset content view to match the row styles.
-        row.configure(container: cell.contentView)
         return cell
     }
 

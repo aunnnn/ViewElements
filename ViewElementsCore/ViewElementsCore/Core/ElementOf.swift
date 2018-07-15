@@ -58,22 +58,22 @@ public struct ElementOf<View: ElementableView>: Element {
     public var identifier: String {
         let viewId = View.viewIdentifier(props: props)
         // If there's `uniqueID` (e.g., element is customized), append it.
-        if let id = uniqueID {
+        if let id = uniqueId {
             return "\(viewId)\(id)"
         }
         return viewId
     }
 
-    /// Random id generated to specify that the element is unique (if needed).
-    private var uniqueID: String?
+    /// Either user-provided id, or randomly-generated id, to specify that the element is unique (if needed).
+    private var uniqueId: String?
 
     private var customizationBlock: ((View) -> Void)?
 
     /// Additional styling to apply to view. This always returns new instance of Element with the provided block.
-    public func customized(_ block: @escaping (View) -> Void) -> ElementOf {
+    public func customized(uniqueId: String?=nil, _ block: @escaping (View) -> Void) -> ElementOf {
         // Generate unique Id if styles block is set
         var newElement = self
-        newElement.uniqueID = randomAlphaNumericString(length: 6)
+        newElement.uniqueId = uniqueId ?? randomAlphaNumericString(length: 6)
         newElement.customizationBlock = block
         return newElement
     }

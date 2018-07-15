@@ -20,6 +20,10 @@ internal class TableSectionHeaderFooterView: UITableViewHeaderFooterView {
         _elementView = view
         contentView.addSubview(view)
         view.al_edgesToLayoutMarginsGuide(ofView: contentView)
+
+        // It's not recommended to set backgroundColor of header footer view, so we leave at the default value.
+        preservesSuperviewLayoutMargins = false
+        layoutMargins = .zero
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -27,10 +31,13 @@ internal class TableSectionHeaderFooterView: UITableViewHeaderFooterView {
     }
 
     func update(toHeaderFooter newHeaderFooter: SectionHeaderFooter) {
-        defer {
-            headerFooter = newHeaderFooter
-        }
-        guard let view = _elementView else { return }
+        // Set headerFooter at the end
+        defer { headerFooter = newHeaderFooter }
+
+        // Configure to headerfooter's styles
+        newHeaderFooter.configure(container: contentView)
+        
+        let view = _elementView!
         if headerFooter.anyElement.isPropsEqualTo(anotherProps: newHeaderFooter.anyElement.props) {
             // If equal, do nothing
             return

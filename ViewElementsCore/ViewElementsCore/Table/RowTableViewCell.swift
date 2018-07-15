@@ -22,6 +22,10 @@ final class RowTableViewCell: UITableViewCell {
         _elementView = view
         contentView.addSubview(view)
         view.al_edgesToLayoutMarginsGuide(ofView: contentView)
+
+        // Default root view style
+        preservesSuperviewLayoutMargins = false
+        layoutMargins = .zero
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -29,10 +33,17 @@ final class RowTableViewCell: UITableViewCell {
     }
 
     func update(toRow newRow: Row) {
-        defer {
-            // Always set the row
-            row = newRow
-        }
+        // Set row at the end
+        defer { row = newRow }
+
+        // Configure root
+        backgroundColor = newRow.backgroundColor
+        selectionStyle = newRow.selectionStyle
+        separatorInset = newRow.separatorStyle.value(withCellBounds: bounds)
+
+        // Configure to row's styles
+        newRow.configure(container: contentView)
+
         let view = _elementView!
         if let row = row, row.anyElement.isPropsEqualTo(anotherProps: newRow.anyElement.props) {
             // There's 'row' and it is already equal to 'newRow' -> do nothing
@@ -44,6 +55,7 @@ final class RowTableViewCell: UITableViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+        // Always rely on latest 'bounds' value.
         if let inset = row?.separatorStyle.value(withCellBounds: bounds) {
             separatorInset = inset
         }
