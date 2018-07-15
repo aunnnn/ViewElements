@@ -36,12 +36,18 @@
 		3050263820F64387003D0CCA /* TableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3050263720F64387003D0CCA /* TableTests.swift */; };
 		305C1C5620F38F7800ADBBE7 /* FatalErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305C1C5520F38F7800ADBBE7 /* FatalErrorUtil.swift */; };
 		305C1C5820F38FEB00ADBBE7 /* XCTestCase+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 305C1C5720F38FEB00ADBBE7 /* XCTestCase+Extension.swift */; };
+		3085098B20F9F04E0058BD42 /* ElementOfEmtpyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3085098A20F9F04E0058BD42 /* ElementOfEmtpyView.swift */; };
+		3085099120FA05D00058BD42 /* ElementOfButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3085099020FA05D00058BD42 /* ElementOfButton.swift */; };
+		309AC1C220FB5436005F8248 /* RowTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309AC1C120FB5436005F8248 /* RowTableViewCellTests.swift */; };
 		30A18A0E20F21C2B00103699 /* ViewElementsCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306AAF1B20EE19B800F89A10 /* ViewElementsCore.framework */; };
 		30A18A1520F21CD700103699 /* Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A18A1420F21CD700103699 /* Component.swift */; };
 		30BA90A820F36E5600271FFD /* BaseNibViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BA90A720F36E5600271FFD /* BaseNibViewTests.swift */; };
 		30BA90AD20F373F600271FFD /* InvalidNibView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30BA90AC20F373F600271FFD /* InvalidNibView.xib */; };
 		30BF7A7120F2702400DCD26A /* ElementableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BF7A7020F2702400DCD26A /* ElementableViewTests.swift */; };
 		30BF7A7320F2712000DCD26A /* AnyElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BF7A7220F2712000DCD26A /* AnyElementTests.swift */; };
+		30C4CCB220F9A4FB00B5A362 /* ElementOfLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C4CCB120F9A4FB00B5A362 /* ElementOfLabel.swift */; };
+		30C4CCB420F9AD7800B5A362 /* ElementOfImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C4CCB320F9AD7800B5A362 /* ElementOfImageView.swift */; };
+		30C4CCB820F9B5DD00B5A362 /* ElementOfTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30C4CCB720F9B5DD00B5A362 /* ElementOfTextField.swift */; };
 		30EEAF7A20F2217400E4DFCE /* UIColor+EquatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EEAF7920F2217400E4DFCE /* UIColor+EquatableTests.swift */; };
 		30EEAF7C20F2230C00E4DFCE /* UIView+AutoLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EEAF7B20F2230C00E4DFCE /* UIView+AutoLayoutTests.swift */; };
 		30EEAF7E20F2276500E4DFCE /* MiscTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30EEAF7D20F2276500E4DFCE /* MiscTests.swift */; };
@@ -90,6 +96,9 @@
 		305C1C5720F38FEB00ADBBE7 /* XCTestCase+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extension.swift"; sourceTree = "<group>"; };
 		306AAF1B20EE19B800F89A10 /* ViewElementsCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ViewElementsCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30842E3620F4AB22000C97DD /* InvalidCustomInitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvalidCustomInitView.swift; sourceTree = "<group>"; };
+		3085098A20F9F04E0058BD42 /* ElementOfEmtpyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementOfEmtpyView.swift; sourceTree = "<group>"; };
+		3085099020FA05D00058BD42 /* ElementOfButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementOfButton.swift; sourceTree = "<group>"; };
+		309AC1C120FB5436005F8248 /* RowTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowTableViewCellTests.swift; sourceTree = "<group>"; };
 		30A18A0920F21C2B00103699 /* ViewElementsCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ViewElementsCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		30A18A0D20F21C2B00103699 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		30A18A1420F21CD700103699 /* Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Component.swift; sourceTree = "<group>"; };
@@ -97,6 +106,9 @@
 		30BA90AC20F373F600271FFD /* InvalidNibView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvalidNibView.xib; sourceTree = "<group>"; };
 		30BF7A7020F2702400DCD26A /* ElementableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementableViewTests.swift; sourceTree = "<group>"; };
 		30BF7A7220F2712000DCD26A /* AnyElementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyElementTests.swift; sourceTree = "<group>"; };
+		30C4CCB120F9A4FB00B5A362 /* ElementOfLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementOfLabel.swift; sourceTree = "<group>"; };
+		30C4CCB320F9AD7800B5A362 /* ElementOfImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementOfImageView.swift; sourceTree = "<group>"; };
+		30C4CCB720F9B5DD00B5A362 /* ElementOfTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementOfTextField.swift; sourceTree = "<group>"; };
 		30EEAF7920F2217400E4DFCE /* UIColor+EquatableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+EquatableTests.swift"; sourceTree = "<group>"; };
 		30EEAF7B20F2230C00E4DFCE /* UIView+AutoLayoutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayoutTests.swift"; sourceTree = "<group>"; };
 		30EEAF7D20F2276500E4DFCE /* MiscTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiscTests.swift; sourceTree = "<group>"; };
@@ -126,6 +138,7 @@
 		3018DDF120EFCA24003DC5D1 /* ViewElementsCore */ = {
 			isa = PBXGroup;
 			children = (
+				30C4CCB020F9A4B500B5A362 /* Units */,
 				304F48EF20F1391600076241 /* Stack */,
 				3018DDF220EFCA24003DC5D1 /* Core */,
 				3018DDF820EFCA24003DC5D1 /* Utils */,
@@ -224,6 +237,7 @@
 				3050263520F6142F003D0CCA /* SectionHeaderFooterTests.swift */,
 				3050263720F64387003D0CCA /* TableTests.swift */,
 				303CAE6120F918BE00568183 /* TableOfElementsViewTests.swift */,
+				309AC1C120FB5436005F8248 /* RowTableViewCellTests.swift */,
 			);
 			path = TableTests;
 			sourceTree = "<group>";
@@ -266,6 +280,18 @@
 				302214A720F398AB00E26D3A /* Utils */,
 			);
 			path = ViewElementsCoreTests;
+			sourceTree = "<group>";
+		};
+		30C4CCB020F9A4B500B5A362 /* Units */ = {
+			isa = PBXGroup;
+			children = (
+				30C4CCB120F9A4FB00B5A362 /* ElementOfLabel.swift */,
+				3085098A20F9F04E0058BD42 /* ElementOfEmtpyView.swift */,
+				30C4CCB320F9AD7800B5A362 /* ElementOfImageView.swift */,
+				30C4CCB720F9B5DD00B5A362 /* ElementOfTextField.swift */,
+				3085099020FA05D00058BD42 /* ElementOfButton.swift */,
+			);
+			path = Units;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -380,6 +406,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30C4CCB420F9AD7800B5A362 /* ElementOfImageView.swift in Sources */,
 				3018DE0620EFCA24003DC5D1 /* UIView+AutoLayout.swift in Sources */,
 				304F48EE20F138E400076241 /* StackOfElementsView.swift in Sources */,
 				3018DE0820EFCA24003DC5D1 /* Table.swift in Sources */,
@@ -388,12 +415,16 @@
 				3018DE0220EFCA24003DC5D1 /* ElementOf.swift in Sources */,
 				30F2A98620F1008000857AC0 /* TableSectionHeaderFooterView.swift in Sources */,
 				3018DE0420EFCA24003DC5D1 /* BaseNibView.swift in Sources */,
+				30C4CCB820F9B5DD00B5A362 /* ElementOfTextField.swift in Sources */,
 				30A18A1520F21CD700103699 /* Component.swift in Sources */,
 				305C1C5620F38F7800ADBBE7 /* FatalErrorUtil.swift in Sources */,
 				3018DE0B20EFCA24003DC5D1 /* RowTableViewCell.swift in Sources */,
 				3018DE0A20EFCA24003DC5D1 /* TableOfElementsView.swift in Sources */,
 				3018DE0920EFCA24003DC5D1 /* ElementContainer.swift in Sources */,
+				3085099120FA05D00058BD42 /* ElementOfButton.swift in Sources */,
+				3085098B20F9F04E0058BD42 /* ElementOfEmtpyView.swift in Sources */,
 				30433CFB20F0B8410054224F /* UIColor+Equatable.swift in Sources */,
+				30C4CCB220F9A4FB00B5A362 /* ElementOfLabel.swift in Sources */,
 				3018DE0720EFCA24003DC5D1 /* Misc.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +442,7 @@
 				305C1C5820F38FEB00ADBBE7 /* XCTestCase+Extension.swift in Sources */,
 				30EEAF7C20F2230C00E4DFCE /* UIView+AutoLayoutTests.swift in Sources */,
 				302214AB20F3994400E26D3A /* InvalidNibView.swift in Sources */,
+				309AC1C220FB5436005F8248 /* RowTableViewCellTests.swift in Sources */,
 				3050263620F6142F003D0CCA /* SectionHeaderFooterTests.swift in Sources */,
 				30BA90A820F36E5600271FFD /* BaseNibViewTests.swift in Sources */,
 				30BF7A7320F2712000DCD26A /* AnyElementTests.swift in Sources */,
