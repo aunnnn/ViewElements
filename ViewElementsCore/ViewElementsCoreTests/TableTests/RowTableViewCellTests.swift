@@ -40,7 +40,7 @@ class RowTableViewCellTests: XCTestCase {
         row.layoutMargins = .zero // Important, if not set to zero, it will adjust the final value of 'separatorInset'
         row.separatorStyle = .insets(left: 1, right: 1)
         let cell = RowTableViewCell(row: row, reuseIdentifier: "test")
-        cell.update(toRow: row)s
+        cell.update(toRow: row)
         cell.setNeedsLayout()
         cell.layoutIfNeeded()
 
