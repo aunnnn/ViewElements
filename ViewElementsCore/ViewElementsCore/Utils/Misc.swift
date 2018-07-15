@@ -29,6 +29,8 @@ func warn(_ items: Any...) {
 
 func print(_ items: Any...) {
     #if DEBUG
-    Swift.print("[DEBUG] \(items)")
+    Swift.print("[DEBUG]")
+    Swift.print(items)
+    Swift.print("")
     #endif
 }
