@@ -17,6 +17,7 @@
 		304F48EC20F1263500076241 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 304F48EB20F1263500076241 /* Launch Screen.storyboard */; };
 		3091E69F20EFC1BC00631E6A /* TestNibView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3091E69E20EFC1BC00631E6A /* TestNibView.xib */; };
 		3091E6A120EFC1C800631E6A /* TestNibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3091E6A020EFC1C800631E6A /* TestNibView.swift */; };
+		30C4CCB620F9AF6F00B5A362 /* img1.png in Resources */ = {isa = PBXBuildFile; fileRef = 30C4CCB520F9AF6F00B5A362 /* img1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		304F48EB20F1263500076241 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		3091E69E20EFC1BC00631E6A /* TestNibView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestNibView.xib; sourceTree = "<group>"; };
 		3091E6A020EFC1C800631E6A /* TestNibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNibView.swift; sourceTree = "<group>"; };
+		30C4CCB520F9AF6F00B5A362 /* img1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img1.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 		304221CC20EE461F00292BB0 /* ViewElementsExamples */ = {
 			isa = PBXGroup;
 			children = (
+				30C4CCB520F9AF6F00B5A362 /* img1.png */,
 				3091E69D20EFC19500631E6A /* Views */,
 				304221CD20EE461F00292BB0 /* AppDelegate.swift */,
 				304221CF20EE461F00292BB0 /* ViewController.swift */,
@@ -219,6 +222,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30C4CCB620F9AF6F00B5A362 /* img1.png in Resources */,
 				3091E69F20EFC1BC00631E6A /* TestNibView.xib in Resources */,
 				304221D520EE462000292BB0 /* Assets.xcassets in Resources */,
 				304F48EC20F1263500076241 /* Launch Screen.storyboard in Resources */,

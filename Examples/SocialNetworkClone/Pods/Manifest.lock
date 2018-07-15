@@ -1,0 +1,33 @@
+PODS:
+  - Bartinter (0.0.2)
+  - Kingfisher (4.8.0)
+  - RxCocoa (4.2.0):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.2.0)
+  - SwiftDate (5.0.0)
+
+DEPENDENCIES:
+  - Bartinter
+  - Kingfisher
+  - RxCocoa
+  - RxSwift
+  - SwiftDate
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Bartinter
+    - Kingfisher
+    - RxCocoa
+    - RxSwift
+    - SwiftDate
+
+SPEC CHECKSUMS:
+  Bartinter: 350b1d89faf569cd4c1ee8dc32465acf57eb0373
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+  RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
+  RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
+  SwiftDate: 1efb57cf6a7657fdbd00c3b80d5f724bbca6428d
+
+PODFILE CHECKSUM: 233d2e0f4da4c82a8142c766c8b690d9e2ef3ab3
+
+COCOAPODS: 1.5.3

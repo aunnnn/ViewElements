@@ -1,0 +1,11 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '9.0'
+
+target 'SocialNetworkClone' do
+  use_frameworks!
+  pod 'Kingfisher'
+  pod 'SwiftDate'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'Bartinter'
+end

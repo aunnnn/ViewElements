@@ -1,0 +1,6 @@
+framework module Pods_SocialNetworkClone {
+  umbrella header "Pods-SocialNetworkClone-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -17,8 +17,7 @@ extension Table {
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func getTable1() -> Table {
         var rows: [Row] = (0...20).map { i in
             var r = Row(ElementOf<TestNibView>(props: "Ind \(i)"))
             r.separatorStyle = .insets(left: 20, right: 8)
@@ -38,6 +37,22 @@ class ViewController: UIViewController {
         let s = { (num: Int) -> Section in Section(rows: rows, footer: SectionFooter(ElementOf<TestNibView>(props: "\(num) Footer!"))) }
         var table = Table(sections: [s(1), s(2)])
         table.guessesSameHeightsForCellsWithSameType = true
+        return table
+    }
+
+    func getTable2() -> Table {
+        let lb = ElementOfLabel("First Label that should automatically support AutoLayout! Yes this is so cool.")
+        let im = ElementOfImageView(#imageLiteral(resourceName: "img1.png"))
+
+        let section = Section(rows: [Row(lb), Row(im)], header: nil, footer: nil)
+        let table = Table(sections: [section])
+        return table
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let table = getTable2()
         let tableView = TableOfElementsView()
         view.addSubview(tableView)
         tableView.al_edges(toView: view)
