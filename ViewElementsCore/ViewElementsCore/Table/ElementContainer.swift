@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// Describe a container view that contains view built from Element.
+/// Describe a container view model that contains view built from Element.
 protocol ElementContainer: Equatable {
 
     /// Background color of container
